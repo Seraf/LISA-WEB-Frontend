@@ -56,7 +56,7 @@
 
      */
 
-    angular.module("ClientApp.factories.session", [])
+    angular.module("lisa-frontend.factories.session", [])
         .constant('constSessionExpiry', 20) // in minutes
         .factory("$Session", [
                 '$Application',
