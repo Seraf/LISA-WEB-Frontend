@@ -3,6 +3,7 @@ angular.module( 'lisa-frontend', [
   'templates-common',
   'lisa-frontend.home',
   'lisa-frontend.about',
+//  'lisa-frontend.session',
   'ui.router'
 ])
 

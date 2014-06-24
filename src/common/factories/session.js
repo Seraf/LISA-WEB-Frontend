@@ -56,7 +56,7 @@
 
      */
 
-    angular.module("lisa-frontend.factories.session", [])
+    angular.module("lisa-frontend.session", [])
         .constant('constSessionExpiry', 20) // in minutes
         .factory("$Session", [
                 '$Application',
@@ -86,9 +86,11 @@
                                     list of feature codes you want to check for
                              */
                                 // bail out early
-                                if(!this.User || !this.User.features) return false;
+                                if(!this.User || !this.User.features) {
+                                    return false;
+                                }
                                 var userCodeList = this.User.features.all.split(" ");
-                                return _.difference(arguments, userCodeList).length == 0
+                                return _.difference(arguments, userCodeList).length === 0;
                             },
 
                         authSuccess: function(){
@@ -113,10 +115,10 @@
                                             $log.info("login.post: auth-success", response);
                                             $this.User = response;
                                             // remove properties we don't need.
-                                            delete $this.User.route
-                                            delete $this.User.restangularCollection
+                                            delete $this.User.route;
+                                            delete $this.User.restangularCollection;
                                             $this.User.is_authenticated = true;
-                                            $this.cacheUser()
+                                            $this.cacheUser();
                                             $this.setApiKeyAuthHeader();
                                             $this.authSuccess();
                                         }, function userLoginFailed(response){
@@ -129,9 +131,9 @@
                         setApiKeyAuthHeader: function(){
                                 if(this.hasOwnProperty('User') && this.User){
                                     $http.defaults.headers.common.Authorization = "apikey "+this.User.username+':'+this.User.apikey;
-                                    $log.info("Setting Authorization Header", $http.defaults.headers.common.Authorization)
+                                    $log.info("Setting Authorization Header", $http.defaults.headers.common.Authorization);
                                 }else{
-                                    $log.info("No user for AuthHeader")
+                                    $log.info("No user for AuthHeader");
                                     delete $http.defaults.headers.common.Authorization;
                                 }
                             },
@@ -140,15 +142,15 @@
                                 var $this = this;
                                 var cachedUser = lscache.get('userData');
                                 $log.info("Request to pull User from Cache");
-                                $log.info("$Session.User", $this.User)
-                                $log.info('lscache.get("userData")', cachedUser)
+                                $log.info("$Session.User", $this.User);
+                                $log.info('lscache.get("userData")', cachedUser);
 
                                 if(!$this.User && cachedUser && cachedUser.hasOwnProperty('apikey') && cachedUser.apikey){
-                                    $log.info('Attempting pull user from cache', cachedUser)
+                                    $log.info('Attempting pull user from cache', cachedUser);
                                     $this.User = cachedUser;
                                 }else{
-                                    $log.warn("No user available.")
-                                    $rootScope.$broadcast("event:auth-login-required")
+                                    $log.warn("No user available.");
+                                    $rootScope.$broadcast("event:auth-login-required");
                                 }
 
                                 if($this.User && $this.User.hasOwnProperty('apikey') && $this.User.apikey){
@@ -156,28 +158,28 @@
                                     Restangular
                                         .one('user', $this.User.id)
                                         .get().then(function(response){
-                                            $log.info("User data updated from server.")
+                                            $log.info("User data updated from server.");
                                             $this.User = response;
                                             $this.cacheUser();
                                             $this.setApiKeyAuthHeader();
-                                            $this.authSuccess()
+                                            $this.authSuccess();
                                         }, function(response){
                                             $log.error("Error retrieving user. logging out.");
                                             $this.logout();
-                                        })
+                                        });
                                 }
 
                             },
 
                         cacheUser: function(){
                                 if(!this.User){
-                                    $log.warn("Can't cache a null value User")
+                                    $log.warn("Can't cache a null value User");
                                     return false;
                                 }
                                 if(!this.User.hasOwnProperty("id") && this.User.hasOwnProperty("resource_uri")){
-                                    $log.info("Building $this.User.id")
-                                    var bits = this.User.resource_uri.split("/")
-                                    this.User.id = Number(bits[bits.length-1])
+                                    $log.info("Building $this.User.id");
+                                    var bits = this.User.resource_uri.split("/");
+                                    this.User.id = Number(bits[bits.length-1]);
                                 }
                                 $log.info("Caching User", this.User);
                                 lscache.set('userData', this.User, constSessionExpiry);
@@ -196,7 +198,7 @@
         controller("LoginController", function($log, $Session, $scope, $rootScope){
                 $scope.Login = function(){
                     $scope.$emit('event:auth-login', {username: $scope.username, password: $scope.password});
-                }
+                };
             }).
 
         run(['$rootScope',
@@ -240,17 +242,17 @@
 
                 // session state change
                 $rootScope.$on('event:session-changed', function(scope){
-                    $log.info("session.changed > ", $Session.User)
-                })
+                    $log.info("session.changed > ", $Session.User);
+                });
 
                 $rootScope.$on('$routeChangeSuccess', function(event, next, current) {
                         if(!$Session.User && next.$$route.loginRequired){
-                            $log.info("Unauthenticated access to ", next.$$route)
-                            $rootScope.$broadcast('event:auth-login-required')
+                            $log.info("Unauthenticated access to ", next.$$route);
+                            $rootScope.$broadcast('event:auth-login-required');
                         }
                     });
 
 
-            }])
+            }]);
 
 })();

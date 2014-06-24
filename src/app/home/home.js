@@ -13,7 +13,7 @@
  * specified, as shown below.
  */
 angular.module( 'lisa-frontend.home', [
-  'ui.router',
+  'ui.router'
 ])
 
 /**
