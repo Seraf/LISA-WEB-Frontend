@@ -3,8 +3,10 @@ angular.module( 'lisa-frontend', [
   'templates-common',
   'lisa-frontend.home',
   'lisa-frontend.about',
-//  'lisa-frontend.session',
-  'ui.router'
+  'restangular',
+  'SessionManager',
+  'ui.router',
+  'angular-loading-bar'
 ])
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {

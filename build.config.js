@@ -68,7 +68,10 @@ module.exports = {
       'vendor/angular-ui-router/release/angular-ui-router.js',
       'vendor/angular-ui-utils/modules/route/route.js',
       'vendor/lodash/dist/lodash.min.js',
-      'vendor/restangular/dist/restangular.min.js'
+      'vendor/restangular/dist/restangular.min.js',
+      'vendor/angular-http-auth/src/http-auth-interceptor.js',
+      'vendor/angular-loading-bar/build/loading-bar.min.js',
+      'vendor/lscache/lscache.min.js'
     ],
     css: [
     ],

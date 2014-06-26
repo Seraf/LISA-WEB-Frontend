@@ -56,20 +56,18 @@
 
      */
 
-    angular.module("lisa-frontend.session", [])
+    angular.module("SessionManager", ['http-auth-interceptor'])
         .constant('constSessionExpiry', 20) // in minutes
         .factory("$Session", [
-                '$Application',
                 '$rootScope',
                 '$q',
                 '$location',
                 '$log',
                 '$http',
-                'Restangular',
-                'authService',
                 'constSessionExpiry',
 
-                function($Application, $rootScope, $q, $location, $log, $http, Restangular, authService, constSessionExpiry) {
+
+                function($rootScope, $q, $location, $log, $http, Restangular, authService, constSessionExpiry) {
                     return {
                         loginInProgress: false,
                         User: null,
@@ -84,7 +82,7 @@
 
                                 ::arguments, array
                                     list of feature codes you want to check for
-                             */
+                            */
                                 // bail out early
                                 if(!this.User || !this.User.features) {
                                     return false;

@@ -8,7 +8,9 @@
     "angular-bootstrap": "~0.10.0",
     "angular-ui-router": "~0.2",
     "restangular": "~1.4.0",
-    "angular-http-auth": "1.2.x"
+    "angular-http-auth": "~1.2.1",
+    "lscache": "~1.0.2",
+    "angular-loading-bar": "~0.4.3"
   },
   "dependencies": {}
 }
