@@ -216,6 +216,8 @@
                 // Best practice would be to hook these events in your app.config
 
                 // login
+
+                //TODO problem : seems not broadcasted ?
                 $rootScope.$on('event:auth-login-required', function(scope, data) {
                         $log.info("session.login-required");
                     });

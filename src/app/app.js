@@ -1,7 +1,7 @@
 angular.module( 'lisa-frontend', [
   'templates-app',
   'templates-common',
-  'lisa-frontend.home',
+  'lisa-frontend.dashboard',
   'lisa-frontend.about',
   'restangular',
   'SessionManager',
@@ -9,11 +9,12 @@ angular.module( 'lisa-frontend', [
   'angular-loading-bar'
 ])
 
-.config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
-  $urlRouterProvider.otherwise( '/home' );
+.config( function myAppConfig ( $stateProvider, $urlRouterProvider) {
+  $urlRouterProvider.otherwise( '/dashboard' );
 })
 
 .run( function run () {
+
 })
 
 .controller( 'AppCtrl', function AppCtrl ( $scope, $location ) {
@@ -24,5 +25,5 @@ angular.module( 'lisa-frontend', [
   });
 })
 
-;
 
+;

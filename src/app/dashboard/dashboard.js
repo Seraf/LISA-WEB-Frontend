@@ -12,7 +12,7 @@
  * The dependencies block here is also where component dependencies should be
  * specified, as shown below.
  */
-angular.module( 'lisa-frontend.home', [
+angular.module( 'lisa-frontend.dashboard', [
   'ui.router'
 ])
 
@@ -22,22 +22,22 @@ angular.module( 'lisa-frontend.home', [
  * this way makes each module more "self-contained".
  */
 .config(function config( $stateProvider ) {
-  $stateProvider.state( 'home', {
-    url: '/home',
+  $stateProvider.state( 'dashboard', {
+    url: '/dashboard',
     views: {
       "main": {
-        controller: 'HomeCtrl',
-        templateUrl: 'home/home.tpl.html'
+        controller: 'DashboardCtrl',
+        templateUrl: 'dashboard/dashboard.tpl.html'
       }
     },
-    data:{ pageTitle: 'Home' }
+    data:{ pageTitle: 'Dashboard' }
   });
 })
 
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'HomeCtrl', function HomeController( $scope ) {
+.controller( 'DashboardCtrl', function DashboardController( $scope ) {
 })
 
 ;
