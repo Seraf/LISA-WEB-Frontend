@@ -205,19 +205,10 @@
 
             function($rootScope, $log, $Session){
                 $rootScope.Session = $Session;
-
-                //namespace the localstorage with the current domain name.
-                lscache.setBucket(window.location.hostname);
-
-                // on page refresh, ensure we have a user. if none exists
-                // then auth-login-required will be triggered.
-                $Session.refreshUser();
-
                 // Best practice would be to hook these events in your app.config
 
                 // login
 
-                //TODO problem : seems not broadcasted ?
                 $rootScope.$on('event:auth-login-required', function(scope, data) {
                         $log.info("session.login-required");
                     });
@@ -251,6 +242,14 @@
                             $rootScope.$broadcast('event:auth-login-required');
                         }
                     });
+
+
+                //namespace the localstorage with the current domain name.
+                lscache.setBucket(window.location.hostname);
+
+                // on page refresh, ensure we have a user. if none exists
+                // then auth-login-required will be triggered.
+                $Session.refreshUser();
 
 
             }]);
