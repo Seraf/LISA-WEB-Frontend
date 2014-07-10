@@ -56,7 +56,7 @@
 
      */
 
-    angular.module("SessionManager", ['http-auth-interceptor'])
+    angular.module("SessionManager", ['http-auth-interceptor','restangular'])
         .constant('constSessionExpiry', 20) // in minutes
         .factory("$Session", [
                 '$rootScope',
@@ -106,24 +106,16 @@
                         login: function(data){
                                 $log.info("Preparing Login Data", data);
                                 var $this = this;
-                                return Restangular
+                                var $test = Restangular;
+                                $test.setBaseUrl('backend/api/v1');
+                                $test.all('user/login/');
+                                $test.post(data);
+                                /*return Restangular
+                                        .setBaseUrl('backend/api/v1')
                                         .all('user/login/')
-                                        .post(data)
-                                        .then(function userLoginSuccess(response){
-                                            $log.info("login.post: auth-success", response);
-                                            $this.User = response;
-                                            // remove properties we don't need.
-                                            delete $this.User.route;
-                                            delete $this.User.restangularCollection;
-                                            $this.User.is_authenticated = true;
-                                            $this.cacheUser();
-                                            $this.setApiKeyAuthHeader();
-                                            $this.authSuccess();
-                                        }, function userLoginFailed(response){
-                                            $log.info('login.post: auth-failed', response);
-                                            $this.logout();
-                                            return $q.reject(response);
-                                        });
+                                        .post(data);
+                                */
+
                             },
 
                         setApiKeyAuthHeader: function(){
@@ -202,8 +194,9 @@
         run(['$rootScope',
              '$log',
              '$Session',
+             '$state',
 
-            function($rootScope, $log, $Session){
+            function($rootScope, $log, $Session, $state){
                 $rootScope.Session = $Session;
                 // Best practice would be to hook these events in your app.config
 
@@ -211,6 +204,7 @@
 
                 $rootScope.$on('event:auth-login-required', function(scope, data) {
                         $log.info("session.login-required");
+                        $state.go('login');
                     });
 
                 $rootScope.$on('event:auth-login', function(scope, data) {
@@ -246,11 +240,6 @@
 
                 //namespace the localstorage with the current domain name.
                 lscache.setBucket(window.location.hostname);
-
-                // on page refresh, ensure we have a user. if none exists
-                // then auth-login-required will be triggered.
-                $Session.refreshUser();
-
 
             }]);
 
