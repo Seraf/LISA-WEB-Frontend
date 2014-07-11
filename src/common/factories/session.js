@@ -106,16 +106,25 @@
                         login: function(data){
                                 $log.info("Preparing Login Data", data);
                                 var $this = this;
-                                var $test = Restangular;
-                                $test.setBaseUrl('backend/api/v1');
-                                $test.all('user/login/');
-                                $test.post(data);
-                                /*return Restangular
-                                        .setBaseUrl('backend/api/v1')
-                                        .all('user/login/')
-                                        .post(data);
-                                */
-
+                                return Restangular
+                                    .setBaseUrl('backend/api/v1')
+                                    .all('user/login/')
+                                    .post(data)
+                                    .then(function userLoginSuccess(response){
+                                            $log.info("login.post: auth-success", response);
+                                            $this.User = response;
+                                            // remove properties we don't need.
+                                            delete $this.User.route;
+                                            delete $this.User.restangularCollection;
+                                            $this.User.is_authenticated = true;
+                                            $this.cacheUser();
+                                            $this.setApiKeyAuthHeader();
+                                            $this.authSuccess();
+                                        }, function userLoginFailed(response){
+                                            $log.info('login.post: auth-failed', response);
+                                            $this.logout();
+                                            return $q.reject(response);
+                                        });
                             },
 
                         setApiKeyAuthHeader: function(){
@@ -185,7 +194,7 @@
                     };
             }]).
 
-        controller("LoginController", function($log, $Session, $scope, $rootScope){
+        controller("LoginController", function($log, $Session, $scope){
                 $scope.Login = function(){
                     $scope.$emit('event:auth-login', {username: $scope.username, password: $scope.password});
                 };
