@@ -64,8 +64,9 @@
                 '$location',
                 '$log',
                 '$http',
+                'Restangular',
+                'authService',
                 'constSessionExpiry',
-
 
                 function($rootScope, $q, $location, $log, $http, Restangular, authService, constSessionExpiry) {
                     return {
@@ -155,6 +156,7 @@
                                 if($this.User && $this.User.hasOwnProperty('apikey') && $this.User.apikey){
                                     $this.setApiKeyAuthHeader();
                                     Restangular
+                                        .setBaseUrl('backend/api/v1')
                                         .one('user', $this.User.id)
                                         .get().then(function(response){
                                             $log.info("User data updated from server.");
