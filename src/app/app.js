@@ -9,8 +9,10 @@ angular.module( 'lisa-frontend', [
   'angular-loading-bar'
 ])
 
-.config( function myAppConfig ( $stateProvider, $urlRouterProvider) {
+.config( function myAppConfig ( $stateProvider, $urlRouterProvider, RestangularProvider) {
   $urlRouterProvider.otherwise( '/dashboard' );
+
+  RestangularProvider.setBaseUrl('backend/api/v1');
 
   $stateProvider.state( 'login', {
     url: '/login',

@@ -108,7 +108,6 @@
                                 $log.info("Preparing Login Data", data);
                                 var $this = this;
                                 return Restangular
-                                    .setBaseUrl('backend/api/v1')
                                     .all('user/login/')
                                     .post(data)
                                     .then(function userLoginSuccess(response){
@@ -156,7 +155,6 @@
                                 if($this.User && $this.User.hasOwnProperty('apikey') && $this.User.apikey){
                                     $this.setApiKeyAuthHeader();
                                     Restangular
-                                        .setBaseUrl('backend/api/v1')
                                         .one('user', $this.User.id)
                                         .get().then(function(response){
                                             $log.info("User data updated from server.");
