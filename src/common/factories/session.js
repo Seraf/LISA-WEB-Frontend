@@ -50,7 +50,7 @@
 
                 event:auth-login-required
 
-                event:auth-login-confirmed
+                event:auth-loginConfirmed
 
                 $routeChangeSuccess
 
@@ -141,13 +141,15 @@
                                 var $this = this;
                                 var cachedUser = lscache.get('userData');
                                 $log.info("Request to pull User from Cache");
+
                                 $log.info("$Session.User", $this.User);
                                 $log.info('lscache.get("userData")', cachedUser);
 
                                 if(!$this.User && cachedUser && cachedUser.hasOwnProperty('apikey') && cachedUser.apikey){
                                     $log.info('Attempting pull user from cache', cachedUser);
                                     $this.User = cachedUser;
-                                }else{
+                                }
+                                else if(!$this.User){
                                     $log.warn("No user available.");
                                     $rootScope.$broadcast("event:auth-login-required");
                                 }
@@ -194,8 +196,11 @@
                     };
             }]).
 
-        controller("LoginController", function($log, $Session, $scope){
-                $scope.Login = function(){
+        controller("LoginController", function($log, $Session, $scope, $state){
+            if($Session.User){
+                $state.go('dashboard');
+            }
+            $scope.Login = function(){
                     $scope.$emit('event:auth-login', {username: $scope.username, password: $scope.password});
                 };
             }).
@@ -221,8 +226,9 @@
                         $Session.login(data);
                     });
 
-                $rootScope.$on('event:auth-login-confirmed', function(scope, data) {
-                        $log.info("session.login-confirmed");
+                $rootScope.$on('event:auth-loginConfirmed', function(scope, data) {
+                        $log.info("session.loginConfirmed");
+                        $state.go('dashboard');
                     });
 
                 // logout

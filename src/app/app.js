@@ -2,7 +2,7 @@ angular.module( 'lisa-frontend', [
   'templates-app',
   'templates-common',
   'lisa-frontend.dashboard',
-  'lisa-frontend.about',
+  'lisa-frontend.plugins',
   'restangular',
   'SessionManager',
   'ui.router',
@@ -10,7 +10,7 @@ angular.module( 'lisa-frontend', [
 ])
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider, RestangularProvider) {
-  $urlRouterProvider.otherwise( '/dashboard' );
+  //$urlRouterProvider.otherwise( '/dashboard' );
 
   RestangularProvider.setBaseUrl('backend/api/v1');
 
