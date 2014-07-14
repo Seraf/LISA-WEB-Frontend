@@ -1,17 +1,17 @@
 angular.module( 'lisa-frontend', [
+  'SessionManager',
   'templates-app',
   'templates-common',
   'lisa-frontend.dashboard',
   'lisa-frontend.plugins',
+  'lisa-frontend.interface',
   'restangular',
-  'SessionManager',
   'ui.router',
+  'ui.bootstrap',
   'angular-loading-bar'
 ])
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider, RestangularProvider) {
-  //$urlRouterProvider.otherwise( '/dashboard' );
-
   RestangularProvider.setBaseUrl('backend/api/v1');
 
   $stateProvider.state( 'login', {
@@ -24,6 +24,8 @@ angular.module( 'lisa-frontend', [
     },
     data:{ pageTitle: 'Login' }
   });
+
+  //$urlRouterProvider.otherwise( '/dashboard' );
 })
 
 .run( function run () {
@@ -32,10 +34,9 @@ angular.module( 'lisa-frontend', [
 
 .controller( 'AppCtrl', function AppCtrl ( $scope, $location, $Session, $log) {
   $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
+    $log.info("fromstate:",fromState);
+    $log.info("tostate:",toState);
     $Session.refreshUser();
-    if ( toState.name != "login" ) {
-        $log.info(toState);
-    }
     if ( angular.isDefined( toState.data.pageTitle ) ) {
       $scope.pageTitle = toState.data.pageTitle + ' | LISA' ;
     }

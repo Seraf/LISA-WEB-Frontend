@@ -2,20 +2,6 @@
 <html ng-app="lisa-frontend" ng-controller="AppCtrl">
   <head>
     <title ng-bind="pageTitle"></title>
-
-    <!-- social media tags -->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="@joshdmiller">
-    <meta name="twitter:title" content="lisa-frontend">
-    <meta name="twitter:description" content="Non-Trivial AngularJS Made Easy: Everything you need to kickstart AngularJS projects: a best-practice directory structure, an intelligent build system, and the best web design libraries around.">
-    <meta name="twitter:creator" content="@joshdmiller">
-    <meta name="twitter:image:src" content="https://a248.e.akamai.net/assets.github.com/images/modules/logos_page/Octocat.png?1366128846">
-    <meta property="og:title" content="lisa-frontend" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="http://bit.ly/lisa-frontend" />
-    <meta property="og:image" content="https://a248.e.akamai.net/assets.github.com/images/modules/logos_page/Octocat.png?1366128846" />
-    <meta property="og:description" content="Non-Trivial AngularJS Made Easy: Everything you need to kickstart AngularJS projects: a best-practice directory structure, an intelligent build system, and the best web design libraries around.">
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- font awesome from BootstrapCDN -->
@@ -45,37 +31,20 @@
       </div>
       <div class="navbar-collapse collapse navbar-responsive-collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Active</a></li>
-          <li><a href="#">Link</a></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li class="divider"></li>
-              <li class="dropdown-header">Dropdown header</li>
-              <li><a href="#">Separated link</a></li>
-              <li><a href="#">One more separated link</a></li>
-            </ul>
-          </li>
+          <li ui-sref-active="active"><a href ui-sref="dashboard"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+          <li><a href ui-sref="plugins"><i class="fa"></i>Plugins</a></li>
         </ul>
-        <form class="navbar-form navbar-left">
-          <input class="form-control col-lg-8" placeholder="Search" type="text">
-        </form>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Link</a></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li ui-sref-active="active"><a href ui-sref="dashboard"><i class="fa fa-dashboard"></i>Dashboard</a></li>
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li class="divider"></li>
-              <li><a href="#">Separated link</a></li>
-            </ul>
-          </li>
+          <div ng-controller="UserDropdownCtrl">
+            <span class="dropdown" on-toggle="toggled(open)">
+              <a href class="dropdown-toggle">
+                {{ $root.Session.User.username }}
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href ng-click="Session.logout()">Logout</a></li>
+              </ul>
+            </span>
+          </div>
         </ul>
       </div>
     </div>
@@ -87,16 +56,7 @@
       <div class="container">
         <div class="footer-inner">
           <p>
-            (c) 2013 <a href="http://www.joshdavidmiller.com">Josh David Miller</a>. 
-            <a href="http://github.com/ngbp/ngbp/fork_select">Fork this</a>
-            to kickstart your next project.
-            <br />
-            ngbp is based on
-            <a href="http://www.angularjs.org">AngularJS</a>,
-            <a href="http://getbootstrap.com">Bootstrap</a>, 
-            <a href="http://angular-ui.github.com/bootstrap">UI Bootstrap</a>,
-            and 
-            <a href="http://fortawesome.github.com/Font-Awesome">Font Awesome</a>.        
+            (c) 2014 <a href="http://www.lisa-project.net">LISA Project</a>
           </p>
         </div>
       </div>

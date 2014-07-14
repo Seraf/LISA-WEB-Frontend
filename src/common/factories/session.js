@@ -64,11 +64,12 @@
                 '$location',
                 '$log',
                 '$http',
+                '$state',
                 'Restangular',
                 'authService',
                 'constSessionExpiry',
 
-                function($rootScope, $q, $location, $log, $http, Restangular, authService, constSessionExpiry) {
+                function($rootScope, $q, $location, $log, $http, $state, Restangular, authService, constSessionExpiry) {
                     return {
                         loginInProgress: false,
                         User: null,
@@ -120,6 +121,7 @@
                                             $this.cacheUser();
                                             $this.setApiKeyAuthHeader();
                                             $this.authSuccess();
+                                            $state.go('dashboard');
                                         }, function userLoginFailed(response){
                                             $log.info('login.post: auth-failed', response);
                                             $this.logout();
@@ -228,7 +230,7 @@
 
                 $rootScope.$on('event:auth-loginConfirmed', function(scope, data) {
                         $log.info("session.loginConfirmed");
-                        $state.go('dashboard');
+                        //$state.go('dashboard');
                     });
 
                 // logout
@@ -238,6 +240,7 @@
                     });
                 $rootScope.$on('event:auth-logout-confirmed', function(scope, data) {
                         $log.info("session.logout-confirmed");
+                        $state.go('login');
                     });
 
                 // session state change
