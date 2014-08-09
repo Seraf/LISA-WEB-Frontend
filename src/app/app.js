@@ -17,7 +17,7 @@ angular.module( 'lisa-frontend', [
   $stateProvider.state( 'login', {
     url: '/login',
     views: {
-      "main": {
+      "login": {
         controller: 'LoginController',
         templateUrl: 'interface/login.tpl.html'
       }
@@ -25,10 +25,13 @@ angular.module( 'lisa-frontend', [
     data:{ pageTitle: 'Login' }
   });
 
-  //$urlRouterProvider.otherwise( '/dashboard' );
+  $urlRouterProvider.otherwise( '/dashboard' );
 })
 
-.run( function run () {
+.run( function run ($Session) {
+  // Get the current user when the application starts
+  // (in case they are still logged in from a previous session)
+  $Session.refreshUser();
 
 })
 
