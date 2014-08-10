@@ -71,7 +71,9 @@ module.exports = {
       'vendor/restangular/dist/restangular.min.js',
       'vendor/angular-http-auth/src/http-auth-interceptor.js',
       'vendor/angular-loading-bar/build/loading-bar.min.js',
-      'vendor/lscache/lscache.min.js'
+      'vendor/lscache/lscache.min.js',
+      'vendor/angular-sanitize/angular-sanitize.js',
+      'vendor/angular-growl-notifications/dist/growl-notifications.min.js'
     ],
     css: [
     ],

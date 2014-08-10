@@ -18,7 +18,7 @@
         <center><h3>You must enable javascript to use LISA</h3></center>
       </div>
     </noscript>
-
+    <div growl-notifications>Test !</div>
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -119,13 +119,10 @@
                     <a href class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{ Session.User.username }} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                            <a href ng-click="profile()"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>
                         <li>
                             <a href="https://github.com/Seraf/LISA/issues" target="_blank"><i class="fa fa-fw fa-bug"></i> L.I.S.A Issues</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
                         <li>
@@ -150,7 +147,6 @@
         <div id="page-wrapper">
             <div ng-cloak ng-view></div>
             <div class="container-fluid" ui-view="main">
-
 
             </div>
             <!-- /.container-fluid -->

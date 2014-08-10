@@ -8,7 +8,9 @@ angular.module( 'lisa-frontend', [
   'restangular',
   'ui.router',
   'ui.bootstrap',
-  'angular-loading-bar'
+  'angular-loading-bar',
+  'growlNotifications',
+  'ngSanitize'
 ])
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider, RestangularProvider) {

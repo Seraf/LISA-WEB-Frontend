@@ -29,22 +29,28 @@ angular.module( 'lisa-frontend.interface', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'UserDropdownCtrl', function UserDropdownCtrl( $scope, $Session) {
+.controller( 'UserDropdownCtrl', function UserDropdownCtrl( $scope, $Session, growlNotifications, $modal) {
 
   $scope.Session = $Session;
 
-  $scope.status = {
-    isopen: false
+  $scope.profile = function () {
+
+    var modalInstance = $modal.open({
+      templateUrl: 'interface/profile.tpl.html',
+      controller: ProfileCtrl
+    });
   };
 
-  $scope.toggled = function(open) {
-    console.log('Dropdown is now: ', open);
-  };
-
-  $scope.toggleDropdown = function($event) {
-    $event.preventDefault();
-    $event.stopPropagation();
-    $scope.status.isopen = !$scope.status.isopen;
-  };
 })
 ;
+
+var ProfileCtrl = function ($scope, $modalInstance) {
+
+  $scope.ok = function () {
+    $modalInstance.close();
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+};
