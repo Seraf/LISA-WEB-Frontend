@@ -29,7 +29,7 @@ angular.module( 'lisa-frontend.interface', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'UserDropdownCtrl', function UserDropdownCtrl( $scope, $Session, growlNotifications, $modal) {
+.controller( 'UserDropdownCtrl', function UserDropdownCtrl( $scope, $Session, $modal) {
 
   $scope.Session = $Session;
 

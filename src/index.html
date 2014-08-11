@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- font awesome from BootstrapCDN -->
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link href="assets/css/font-awesome.css" rel="stylesheet">
 
     <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
     <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
@@ -18,7 +18,7 @@
         <center><h3>You must enable javascript to use LISA</h3></center>
       </div>
     </noscript>
-    <div growl-notifications>Test !</div>
+    <div growl-notifications class="growl-notifications"></div>
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -31,7 +31,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">L.I.S.A</a>
+                <a class="navbar-brand" href="/">L.I.S.A</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -121,6 +121,10 @@
                         <li>
                             <a href ng-click="profile()"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>
+                        <li>
+                            <a href="/backend/api/docs/" target="_blank"><i class="fa fa-fw fa-flask"></i> API Docs</a>
+                        </li>
+
                         <li>
                             <a href="https://github.com/Seraf/LISA/issues" target="_blank"><i class="fa fa-fw fa-bug"></i> L.I.S.A Issues</a>
                         </li>

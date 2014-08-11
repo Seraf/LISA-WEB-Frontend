@@ -22,16 +22,33 @@ angular.module( 'lisa-frontend.plugins', [
  * this way makes each module more "self-contained".
  */
 .config(function config( $stateProvider ) {
-  $stateProvider.state( 'plugins', {
-    url: '/plugins',
-    views: {
-      "main": {
-        controller: 'PluginsCtrl',
-        templateUrl: 'plugins/plugins.tpl.html'
-      }
-    },
-    data:{ pageTitle: 'Plugins' }
-  });
+  $stateProvider
+      .state( 'plugins', {
+          url: '/plugins',
+          views: {
+              "main": {
+                  controller: 'PluginsCtrl',
+                  templateUrl: 'plugins/plugins.tpl.html'
+              }
+          },
+          data: {
+              pageTitle: 'Plugins',
+              ncyBreadcrumbLabel: '<i class="fa fa-flask"></i> Plugins'
+          }
+          })
+      .state( 'plugins.create', {
+          url: '/create',
+          views: {
+              "main": {
+                  controller: 'PluginsCtrl',
+                  templateUrl: 'plugins/plugins_create.tpl.html'
+              }
+          },
+          data: {
+              pageTitle: 'Plugins Create',
+              ncyBreadcrumbLabel: 'Create'
+          }
+      });
 })
 
 /**

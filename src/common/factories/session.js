@@ -56,7 +56,7 @@
 
      */
 
-    angular.module("SessionManager", ['http-auth-interceptor','restangular'])
+    angular.module("SessionManager", ['http-auth-interceptor','restangular','growlNotifications'])
         .constant('constSessionExpiry', 20) // in minutes
         .factory("$Session", [
                 '$rootScope',
@@ -68,8 +68,9 @@
                 'Restangular',
                 'authService',
                 'constSessionExpiry',
+                'growlNotifications',
 
-                function($rootScope, $q, $location, $log, $http, $state, Restangular, authService, constSessionExpiry) {
+                function($rootScope, $q, $location, $log, $http, $state, Restangular, authService, constSessionExpiry, growlNotifications) {
                     return {
                         loginInProgress: false,
                         User: null,
@@ -122,6 +123,7 @@
                                             $this.setApiKeyAuthHeader();
                                             $this.authSuccess();
                                             $state.go('dashboard');
+                                            growlNotifications.add("Login success" ,'success');
                                         }, function userLoginFailed(response){
                                             $log.info('login.post: auth-failed', response);
                                             $this.logout();

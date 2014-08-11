@@ -30,7 +30,10 @@ angular.module( 'lisa-frontend.dashboard', [
         templateUrl: 'dashboard/dashboard.tpl.html'
       }
     },
-    data:{ pageTitle: 'Dashboard' }
+    data: {
+        pageTitle: 'Dashboard',
+        ncyBreadcrumbLabel: '<i class="fa fa-dashboard"></i> Dashboard'
+    }
   });
 })
 

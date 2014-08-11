@@ -10,10 +10,15 @@ angular.module( 'lisa-frontend', [
   'ui.bootstrap',
   'angular-loading-bar',
   'growlNotifications',
-  'ngSanitize'
+  'ngSanitize',
+  'ncy-angular-breadcrumb'
 ])
 
-.config( function myAppConfig ( $stateProvider, $urlRouterProvider, RestangularProvider) {
+.config( function myAppConfig ( $stateProvider, $urlRouterProvider, RestangularProvider, $breadcrumbProvider) {
+  $breadcrumbProvider.setOptions({
+    templateUrl: 'interface/breadcrumb.tpl.html'
+  });
+
   RestangularProvider.setBaseUrl('backend/api/v1');
 
   $stateProvider.state( 'login', {

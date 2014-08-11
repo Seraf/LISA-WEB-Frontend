@@ -73,7 +73,8 @@ module.exports = {
       'vendor/angular-loading-bar/build/loading-bar.min.js',
       'vendor/lscache/lscache.min.js',
       'vendor/angular-sanitize/angular-sanitize.js',
-      'vendor/angular-growl-notifications/dist/growl-notifications.min.js'
+      'vendor/angular-growl-notifications/dist/growl-notifications.min.js',
+      'vendor/angular-breadcrumb/release/angular-breadcrumb.min.js'
     ],
     css: [
     ],
