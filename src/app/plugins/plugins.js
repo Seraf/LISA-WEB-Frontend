@@ -39,7 +39,7 @@ angular.module( 'lisa-frontend.plugins', [
       .state( 'plugins.create', {
           url: '/create',
           views: {
-              "main": {
+              "plugins": {
                   controller: 'PluginsCtrl',
                   templateUrl: 'plugins/plugins_create.tpl.html'
               }
@@ -48,7 +48,8 @@ angular.module( 'lisa-frontend.plugins', [
               pageTitle: 'Plugins Create',
               ncyBreadcrumbLabel: 'Create'
           }
-      });
+      })
+  ;
 })
 
 /**
@@ -56,6 +57,5 @@ angular.module( 'lisa-frontend.plugins', [
  */
 .controller( 'PluginsCtrl', function PluginsController( $scope ) {
 })
-
 ;
 

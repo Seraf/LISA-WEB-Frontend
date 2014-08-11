@@ -42,6 +42,5 @@ angular.module( 'lisa-frontend.dashboard', [
  */
 .controller( 'DashboardCtrl', function DashboardController( $scope ) {
 })
-
 ;
 
