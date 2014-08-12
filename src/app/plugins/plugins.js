@@ -13,6 +13,7 @@
  * specified, as shown below.
  */
 angular.module( 'lisa-frontend.plugins', [
+  'ConfigurationManager',
   'ui.router'
 ])
 
@@ -55,7 +56,10 @@ angular.module( 'lisa-frontend.plugins', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'PluginsCtrl', function PluginsController( $scope ) {
+.controller( 'PluginsCtrl', function PluginsController( $scope, Restangular, $Configuration ) {
+    $scope.plugins = Restangular.all('plugin').getList().$object;
+    $scope.configuration = $Configuration.configuration;
+    console.log($Configuration);
 })
 ;
 

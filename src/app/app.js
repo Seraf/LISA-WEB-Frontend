@@ -1,5 +1,6 @@
 angular.module( 'lisa-frontend', [
   'SessionManager',
+  'ConfigurationManager',
   'templates-app',
   'templates-common',
   'lisa-frontend.dashboard',
@@ -20,6 +21,18 @@ angular.module( 'lisa-frontend', [
   });
 
   RestangularProvider.setBaseUrl('backend/api/v1');
+  RestangularProvider.setRequestSuffix('?format=json');
+  RestangularProvider.setResponseExtractor(function(response, operation, what, url) {
+      var newResponse;
+      if (operation === 'getList') {
+          newResponse = response.objects;
+          newResponse.metadata = response.meta;
+      } else {
+          newResponse = response;
+      }
+      return newResponse;
+  });
+
 
   $stateProvider.state( 'login', {
     url: '/login',
@@ -35,11 +48,11 @@ angular.module( 'lisa-frontend', [
   $urlRouterProvider.otherwise( '/dashboard' );
 })
 
-.run( function run ($Session) {
+.run( function run ($Session, $Configuration) {
   // Get the current user when the application starts
   // (in case they are still logged in from a previous session)
   $Session.refreshUser();
-
+  $Configuration.getConfig();
 })
 
 .controller( 'AppCtrl', function AppCtrl ( $scope, $location, $Session, $log) {

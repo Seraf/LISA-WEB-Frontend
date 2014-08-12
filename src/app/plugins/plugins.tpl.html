@@ -2,5 +2,28 @@
     <!-- Breadcrumb -->
     <div ncy-breadcrumb></div>
     <!-- /Breadcrumb -->
+    <table>
+        <thead>
+            <td>Name</td>
+            <td>Description</td>
+            <td>Version</td>
+            <td>Enable</td>
+            <td>Lang</td>
+            <td>Author</td>
+
+        </thead>
+        <tr ng-repeat="plugin in plugins">
+            <td>{{ plugin.name }}</td>
+            <td ng-repeat="oDescription in plugin.description">
+                <div ng-if="oDescription.lang == configuration.lang">
+                    {{ oDescription.description }}
+                </div>
+            </td>
+            <td>{{ plugin.version }}</td>
+            <td>{{ plugin.enable }}</td>
+            <td>{{ plugin.lang }}</td>
+            <td>{{ plugin.author }}</td>
+        </tr>
+    </table>
     <a href ui-sref="plugins.create"><i class="fa fa-fw fa-flask"></i> Plugins Create</a>
 </div>
