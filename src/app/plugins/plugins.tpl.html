@@ -2,6 +2,7 @@
     <!-- Breadcrumb -->
     <div ncy-breadcrumb></div>
     <!-- /Breadcrumb -->
+
     <table>
         <thead>
             <td>Name</td>
@@ -10,7 +11,7 @@
             <td>Enable</td>
             <td>Lang</td>
             <td>Author</td>
-
+            <td>Actions</td>
         </thead>
         <tr ng-repeat="plugin in plugins">
             <td>{{ plugin.name }}</td>
@@ -21,9 +22,19 @@
             </td>
             <td>{{ plugin.version }}</td>
             <td>{{ plugin.enable }}</td>
-            <td>{{ plugin.lang }}</td>
+            <td ng-repeat="lang in plugin.lang">
+                {{ lang }}
+            </td>
             <td>{{ plugin.author }}</td>
+            <td>
+                <div ng-if="plugin.enabled == true">
+                    <a href ng-click="disable(plugin.id)"><i class="fa fa-fw fa-flask"></i> Plugins disable</a>
+                </div>
+                <div ng-if="plugin.enabled == false">
+                    <a href ng-click="enable(plugin.id)"><i class="fa fa-fw fa-flask"></i> Plugins enable</a>
+                </div>
+            </td>
         </tr>
     </table>
-    <a href ui-sref="plugins.create"><i class="fa fa-fw fa-flask"></i> Plugins Create</a>
+
 </div>

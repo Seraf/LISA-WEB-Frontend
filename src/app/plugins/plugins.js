@@ -14,7 +14,8 @@
  */
 angular.module( 'lisa-frontend.plugins', [
   'ConfigurationManager',
-  'ui.router'
+  'ui.router',
+  'growlNotifications'
 ])
 
 /**
@@ -56,10 +57,43 @@ angular.module( 'lisa-frontend.plugins', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'PluginsCtrl', function PluginsController( $scope, Restangular, $Configuration ) {
-    $scope.plugins = Restangular.all('plugin').getList().$object;
+.controller( 'PluginsCtrl', function PluginsController( $scope, Restangular, $Configuration, growlNotifications) {
+    $scope.refreshPlugins = function(){
+        $scope.plugins = Restangular.all('plugin').getList().$object;
+    };
+
+    $scope.enable = function($pluginId){
+        Restangular
+            .one('plugin', $pluginId).one('enable')
+            .get().then(function(response){
+                if(response.status == 'success') {
+                    growlNotifications.add(response.log, 'success');
+                    $scope.refreshPlugins();
+                } else {
+                    growlNotifications.add(response.log, 'error');
+                }
+            }, function(response){
+                console.error("Error retrieving plugin api.");
+            });
+    };
+
+    $scope.disable = function($pluginId){
+        Restangular
+            .one('plugin', $pluginId).one('disable')
+            .get().then(function(response){
+                if(response.status == 'success') {
+                    growlNotifications.add(response.log, 'success');
+                    $scope.refreshPlugins();
+                } else {
+                    growlNotifications.add(response.log, 'error');
+                }
+            }, function(response){
+                console.error("Error retrieving plugin api.");
+            });
+    };
+
+    $scope.refreshPlugins();
     $scope.configuration = $Configuration.configuration;
-    console.log($Configuration);
 })
 ;
 
