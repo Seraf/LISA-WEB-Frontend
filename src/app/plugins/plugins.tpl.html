@@ -5,13 +5,13 @@
 
     <table>
         <thead>
-            <td>Name</td>
-            <td>Description</td>
-            <td>Version</td>
-            <td>Enable</td>
-            <td>Lang</td>
-            <td>Author</td>
-            <td>Actions</td>
+            <td translate>Name</td>
+            <td translate>Description</td>
+            <td translate>Version</td>
+            <td translate>Enable</td>
+            <td translate>Lang</td>
+            <td translate>Author</td>
+            <td translate>Actions</td>
         </thead>
         <tr ng-repeat="plugin in plugins">
             <td>{{ plugin.name }}</td>
@@ -28,11 +28,12 @@
             <td>{{ plugin.author }}</td>
             <td>
                 <div ng-if="plugin.enabled == true">
-                    <a href ng-click="disable(plugin.id)"><i class="fa fa-fw fa-flask"></i> Plugins disable</a>
+                    <button class="btn btn-primary btn-block" ng-click="disable(plugin.id)" translate>Disable</button>
                 </div>
                 <div ng-if="plugin.enabled == false">
-                    <a href ng-click="enable(plugin.id)"><i class="fa fa-fw fa-flask"></i> Plugins enable</a>
+                    <button class="btn btn-primary btn-block" ng-click="enable(plugin.id)" translate>Enable</button>
                 </div>
+                <button class="btn btn-primary btn-block" ng-click="editConfiguration(plugin)" translate>Configuration</button>
             </td>
         </tr>
     </table>

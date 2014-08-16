@@ -15,7 +15,8 @@
 angular.module( 'lisa-frontend.plugins', [
   'ConfigurationManager',
   'ui.router',
-  'growlNotifications'
+  'growlNotifications',
+  'gettext',
 ])
 
 /**
@@ -23,7 +24,7 @@ angular.module( 'lisa-frontend.plugins', [
  * will handle ensuring they are all available at run-time, but splitting it
  * this way makes each module more "self-contained".
  */
-.config(function config( $stateProvider ) {
+.config(function config( $stateProvider, gettext ) {
   $stateProvider
       .state( 'plugins', {
           url: '/plugins',
@@ -35,7 +36,7 @@ angular.module( 'lisa-frontend.plugins', [
           },
           data: {
               pageTitle: 'Plugins',
-              ncyBreadcrumbLabel: '<i class="fa fa-flask"></i> Plugins'
+              ncyBreadcrumbLabel: gettext('<i class="fa fa-flask"></i> Plugins')
           }
           })
       .state( 'plugins.create', {
@@ -47,8 +48,8 @@ angular.module( 'lisa-frontend.plugins', [
               }
           },
           data: {
-              pageTitle: 'Plugins Create',
-              ncyBreadcrumbLabel: 'Create'
+              pageTitle: gettext('Plugins Create'),
+              ncyBreadcrumbLabel: gettext('Create')
           }
       })
   ;
@@ -57,7 +58,7 @@ angular.module( 'lisa-frontend.plugins', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'PluginsCtrl', function PluginsController( $scope, Restangular, $Configuration, growlNotifications) {
+.controller( 'PluginsCtrl', function PluginsController( $scope, Restangular, $Configuration, growlNotifications, $modal) {
     $scope.refreshPlugins = function(){
         $scope.plugins = Restangular.all('plugin').getList().$object;
     };
@@ -94,6 +95,56 @@ angular.module( 'lisa-frontend.plugins', [
 
     $scope.refreshPlugins();
     $scope.configuration = $Configuration.configuration;
-})
-;
 
+    $scope.editConfiguration = function (plugin) {
+        var modalInstance = $modal.open({
+            templateUrl: 'plugins/modal_configuration.tpl.html',
+            controller: 'PluginsConfigurationCtrl',
+            resolve: {
+              plugin: function () {
+                return plugin;
+              }
+            }
+        });
+    };
+
+})
+
+.controller( 'PluginsConfigurationCtrl', function PluginsConfigurationController($scope, $modalInstance, plugin, growlNotifications, gettextCatalog, Restangular) {
+    var publicEditor;
+
+    $scope.plugin = plugin;
+    $scope.aceLoaded = function(_editor){
+        // Editor part
+        var _session = _editor.getSession();
+        var _renderer = _editor.renderer;
+        publicEditor = _session;
+        // Options
+        _session.setMode("ace/mode/json");
+        _editor.setTheme("ace/theme/clouds_midnight");
+        _session.setUndoManager(new ace.UndoManager());
+        _renderer.setShowGutter(false);
+
+        _editor.setValue(js_beautify(angular.toJson(plugin.configuration)));
+
+
+    };
+
+    $scope.save = function () {
+        try {
+            JSON.parse(publicEditor.getValue());
+            plugin.configuration = angular.fromJson(publicEditor.getValue());
+            // TODO write a restangular query to update plugin.id with a angular.toJson(plugin)
+            growlNotifications.add(gettextCatalog.getString('Configuration has been updated'),'success');
+            $modalInstance.close();
+
+        } catch (e) {
+            growlNotifications.add(gettextCatalog.getString('Please write a valid JSON'),'warning');
+        }
+
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+});

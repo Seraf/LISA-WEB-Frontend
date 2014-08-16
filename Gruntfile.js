@@ -18,6 +18,7 @@ module.exports = function ( grunt ) {
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-ngmin');
   grunt.loadNpmTasks('grunt-html2js');
+  grunt.loadNpmTasks('grunt-angular-gettext');
 
   /**
    * Load in our build configuration file.
@@ -449,7 +450,7 @@ module.exports = function ( grunt ) {
         files: [ 
           '<%= app_files.js %>'
         ],
-        tasks: [ 'jshint:src', 'karma:unit:run', 'copy:build_appjs' ]
+        tasks: [ 'jshint:src', 'karma:unit:run', 'copy:build_appjs', 'nggettext_extract', 'nggettext_compile' ]
       },
 
       /**
@@ -479,7 +480,7 @@ module.exports = function ( grunt ) {
        */
       html: {
         files: [ '<%= app_files.html %>' ],
-        tasks: [ 'index:build' ]
+        tasks: [ 'index:build', 'nggettext_extract', 'nggettext_compile' ]
       },
 
       /**
@@ -490,7 +491,7 @@ module.exports = function ( grunt ) {
           '<%= app_files.atpl %>', 
           '<%= app_files.ctpl %>'
         ],
-        tasks: [ 'html2js' ]
+        tasks: [ 'html2js', 'nggettext_extract', 'nggettext_compile' ]
       },
 
       /**
@@ -528,6 +529,22 @@ module.exports = function ( grunt ) {
           livereload: false
         }
       }
+    },
+
+    nggettext_extract: {
+      pot: {
+        files: [
+          '<%= pot_files %>'
+        ]
+      }
+    },
+
+    nggettext_compile: {
+      all: {
+        files: [
+          '<%= po_compiled %>'
+        ]
+      }
     }
   };
 
@@ -555,7 +572,7 @@ module.exports = function ( grunt ) {
     'clean', 'html2js', 'jshint', 'coffeelint', 'coffee', 'less:build',
     'concat:build_css', 'copy:build_app_assets', 'copy:build_vendor_assets',
     'copy:build_appjs', 'copy:build_vendorjs', 'index:build', 'karmaconfig',
-    'karma:continuous' 
+    'karma:continuous', 'nggettext_extract', 'nggettext_compile'
   ]);
 
   /**
@@ -563,7 +580,8 @@ module.exports = function ( grunt ) {
    * minifying your code.
    */
   grunt.registerTask( 'compile', [
-    'less:compile', 'copy:compile_assets', 'ngmin', 'concat:compile_js', 'uglify', 'index:compile'
+    'less:compile', 'copy:compile_assets', 'ngmin', 'concat:compile_js',
+    'uglify', 'index:compile'
   ]);
 
   /**

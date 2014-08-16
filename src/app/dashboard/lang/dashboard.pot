@@ -1,0 +1,12 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/app/dashboard/dashboard.js
+msgid "<i class=\"fa fa-dashboard\"></i> Dashboard"
+msgstr ""
+
+#: src/app/dashboard/dashboard.js
+msgid "Dashboard"
+msgstr ""

@@ -13,7 +13,8 @@
  * specified, as shown below.
  */
 angular.module( 'lisa-frontend.dashboard', [
-  'ui.router'
+  'ui.router',
+  'gettext'
 ])
 
 /**
@@ -21,7 +22,7 @@ angular.module( 'lisa-frontend.dashboard', [
  * will handle ensuring they are all available at run-time, but splitting it
  * this way makes each module more "self-contained".
  */
-.config(function config( $stateProvider ) {
+.config(function config( $stateProvider, gettext ) {
   $stateProvider.state( 'dashboard', {
     url: '/dashboard',
     views: {
@@ -31,8 +32,8 @@ angular.module( 'lisa-frontend.dashboard', [
       }
     },
     data: {
-        pageTitle: 'Dashboard',
-        ncyBreadcrumbLabel: '<i class="fa fa-dashboard"></i> Dashboard'
+        pageTitle: gettext('Dashboard'),
+        ncyBreadcrumbLabel: gettext('<i class="fa fa-dashboard"></i> Dashboard')
     }
   });
 })

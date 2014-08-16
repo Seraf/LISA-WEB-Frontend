@@ -1,0 +1,49 @@
+# 
+# Translators:
+# Julien Syx <nephilim.seraphin@gmail.com>, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: LISA-WEB-Frontend\n"
+"PO-Revision-Date: 2014-08-15 07:03+0000\n"
+"Last-Translator: Julien Syx <nephilim.seraphin@gmail.com>\n"
+"Language-Team: French (http://www.transifex.com/projects/p/lisa-web-frontend/language/fr/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: src/index.html
+msgid "<i class=\"fa fa-fw fa-bug\"></i> L.I.S.A Issues"
+msgstr "<i class=\"fa fa-fw fa-bug\"></i> L.I.S.A Bugs"
+
+#: src/index.html
+msgid "<i class=\"fa fa-fw fa-dashboard\"></i> Dashboard"
+msgstr "<i class=\"fa fa-fw fa-dashboard\"></i> Tableau de bord"
+
+#: src/index.html
+msgid "<i class=\"fa fa-fw fa-flask\"></i> API Docs"
+msgstr "<i class=\"fa fa-fw fa-flask\"></i> API Docs"
+
+#: src/index.html
+msgid "<i class=\"fa fa-fw fa-flask\"></i> Plugins"
+msgstr "<i class=\"fa fa-fw fa-flask\"></i> Plugins"
+
+#: src/index.html
+msgid "<i class=\"fa fa-fw fa-power-off\"></i> Log Out"
+msgstr "<i class=\"fa fa-fw fa-power-off\"></i> Déconnexion"
+
+#: src/index.html
+msgid "<i class=\"fa fa-fw fa-user\"></i> Profile"
+msgstr "<i class=\"fa fa-fw fa-user\"></i> Paramètres"
+
+#: src/app/interface/login.tpl.html
+msgid "Please Sign In"
+msgstr "Identification"
+
+#: src/app/interface/login.tpl.html
+msgid "Sign in"
+msgstr "Connexion"
+
+#: src/index.html
+msgid "You must enable javascript to use LISA"
+msgstr "Vous devez activer javascript pour utiliser l'interface de LISA"

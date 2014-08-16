@@ -32,6 +32,7 @@
     "karma-jasmine": "~0.2.2",
     "grunt-karma": "~0.8.2",
     "karma-coffee-preprocessor": "~0.2.1",
-    "karma": "~0.12.16"
+    "karma": "~0.12.16",
+    "grunt-angular-gettext": "~0.2.14"
   }
 }

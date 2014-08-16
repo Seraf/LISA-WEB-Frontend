@@ -22,7 +22,7 @@ module.exports = {
   app_files: {
     js: [ 'src/**/*.js', '!src/**/*.spec.js', '!src/assets/**/*.js' ],
     jsunit: [ 'src/**/*.spec.js' ],
-    
+
     coffee: [ 'src/**/*.coffee', '!src/**/*.spec.coffee' ],
     coffeeunit: [ 'src/**/*.spec.coffee' ],
 
@@ -41,6 +41,18 @@ module.exports = {
       'vendor/angular-mocks/angular-mocks.js'
     ]
   },
+
+
+  pot_files: [
+      { 'src/app/interface/lang/interface.pot': ['src/app/interface/*.html', 'src/app/interface/*.js','src/index.html','src/common/factories/*.js'] },
+      { 'src/app/chat/lang/chat.pot': ['src/app/chat/*.html', 'src/app/chat/*.js'] },
+      { 'src/app/dashboard/lang/dashboard.pot': ['src/app/dashboard/*.html', 'src/app/dashboard/*.js'] },
+      { 'src/app/plugins/lang/plugins.pot': ['src/app/plugins/*.html','src/app/plugins/*.js'] }
+  ],
+
+  po_compiled: [
+      { 'build/assets/js/translations.js': ['src/app/**/*.po'] }
+  ],
 
   /**
    * This is the same as `app_files`, except it contains patterns that
@@ -74,7 +86,23 @@ module.exports = {
       'vendor/lscache/lscache.min.js',
       'vendor/angular-sanitize/angular-sanitize.js',
       'vendor/angular-growl-notifications/dist/growl-notifications.min.js',
-      'vendor/angular-breadcrumb/release/angular-breadcrumb.min.js'
+      'vendor/angular-breadcrumb/release/angular-breadcrumb.min.js',
+      'vendor/ace-builds/src-min-noconflict/ace.js',
+      'vendor/ace-builds/src-min-noconflict/theme-clouds_midnight.js',
+      'vendor/ace-builds/src-min-noconflict/mode-json.js',
+      'vendor/ace-builds/src-min-noconflict/worker-json.js',
+      'vendor/ace-builds/src-min-noconflict/mode-python.js',
+      'vendor/ace-builds/src-min-noconflict/mode-django.js',
+      'vendor/ace-builds/src-min-noconflict/mode-css.js',
+      'vendor/ace-builds/src-min-noconflict/worker-css.js',
+      'vendor/ace-builds/src-min-noconflict/mode-html.js',
+      'vendor/ace-builds/src-min-noconflict/worker-html.js',
+      'vendor/ace-builds/src-min-noconflict/mode-javascript.js',
+      'vendor/ace-builds/src-min-noconflict/worker-javascript.js',
+      'vendor/ace-builds/src-min-noconflict/mode-xml.js',
+      'vendor/angular-ui-ace/ui-ace.min.js',
+      'vendor/angular-gettext/dist/angular-gettext.min.js',
+      'vendor/angular-animate/angular-animate.min.js'
     ],
     css: [
     ],

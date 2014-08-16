@@ -1,0 +1,23 @@
+[main]
+host = https://www.transifex.com
+type=PO
+
+[lisa-web-frontend.chat]
+file_filter = src/app/chat/lang/<lang>/LC_MESSAGES/chat.po
+source_file = src/app/chat/lang/chat.pot
+source_lang = en
+
+[lisa-web-frontend.dashboard]
+file_filter = src/app/dashboard/lang/<lang>/LC_MESSAGES/dashboard.po
+source_file = src/app/dashboard/lang/dashboard.pot
+source_lang = en
+
+[lisa-web-frontend.interface]
+file_filter = src/app/interface/lang/<lang>/LC_MESSAGES/interface.po
+source_file = src/app/interface/lang/interface.pot
+source_lang = en
+
+[lisa-web-frontend.plugins]
+file_filter = src/app/plugins/lang/<lang>/LC_MESSAGES/plugins.po
+source_file = src/app/plugins/lang/plugins.pot
+source_lang = en

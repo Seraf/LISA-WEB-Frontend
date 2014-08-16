@@ -1,17 +1,17 @@
-describe( 'AppCtrl', function() {
+describe( 'LisaCtrl', function() {
   describe( 'isCurrentUrl', function() {
-    var AppCtrl, $location, $scope;
+    var LisaCtrl, $location, $scope;
 
     beforeEach( module( 'lisa-frontend' ) );
 
     beforeEach( inject( function( $controller, _$location_, $rootScope ) {
       $location = _$location_;
       $scope = $rootScope.$new();
-      AppCtrl = $controller( 'AppCtrl', { $location: $location, $scope: $scope });
+      LisaCtrl = $controller( 'LisaCtrl', { $location: $location, $scope: $scope });
     }));
 
     it( 'should pass a dummy test', inject( function() {
-      expect( AppCtrl ).toBeTruthy();
+      expect( LisaCtrl ).toBeTruthy();
     }));
   });
 });

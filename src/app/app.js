@@ -6,16 +6,20 @@ angular.module( 'lisa-frontend', [
   'lisa-frontend.dashboard',
   'lisa-frontend.plugins',
   'lisa-frontend.interface',
-  'restangular',
+  'lisa-frontend.chat',
   'ui.router',
   'ui.bootstrap',
   'angular-loading-bar',
   'growlNotifications',
   'ngSanitize',
-  'ncy-angular-breadcrumb'
+  'ui.ace',
+  'restangular',
+  'ncy-angular-breadcrumb',
+  'gettext',
+  'ngAnimate'
 ])
 
-.config( function myAppConfig ( $stateProvider, $urlRouterProvider, RestangularProvider, $breadcrumbProvider) {
+.config(function LisaConfig ( $stateProvider, $urlRouterProvider, RestangularProvider, $breadcrumbProvider) {
   $breadcrumbProvider.setOptions({
     templateUrl: 'interface/breadcrumb.tpl.html'
   });
@@ -48,14 +52,20 @@ angular.module( 'lisa-frontend', [
   $urlRouterProvider.otherwise( '/dashboard' );
 })
 
-.run( function run ($Session, $Configuration) {
+.run( function run ($Session, $Configuration, gettextCatalog) {
   // Get the current user when the application starts
   // (in case they are still logged in from a previous session)
   $Session.refreshUser();
   $Configuration.getConfig();
+
+  if ($Configuration.configuration) {
+      gettextCatalog.setCurrentLanguage($Configuration.configuration.lang);
+      gettextCatalog.debug = true;
+  }
+
 })
 
-.controller( 'AppCtrl', function AppCtrl ( $scope, $location, $Session, $log) {
+.controller( 'LisaCtrl', function LisaCtrl ( $scope, $location, $Session, $log) {
   $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
     $log.info("fromstate:",fromState);
     $log.info("tostate:",toState);

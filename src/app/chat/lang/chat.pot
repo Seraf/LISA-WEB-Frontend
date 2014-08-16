@@ -1,0 +1,16 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/app/chat/chat.js
+msgid "<i class=\"fa fa-chat\"></i> Chat"
+msgstr ""
+
+#: src/app/chat/chat.js
+msgid "Chat"
+msgstr ""
+
+#: src/app/chat/chat.tpl.html
+msgid "L.I.S.A Chat"
+msgstr ""
