@@ -25,6 +25,13 @@ angular.module( 'lisa-frontend.chat', [
 .config(function config( $stateProvider, gettext ) {
 })
 
+.directive('lisaChat', function() {
+    return {
+        restrict: 'EAC',
+        templateUrl: 'chat/chat.tpl.html'
+    };
+})
+
 /**
  * And of course we define a controller for our route.
  */
