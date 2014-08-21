@@ -47,3 +47,27 @@ msgstr "Connexion"
 #: src/index.html
 msgid "You must enable javascript to use LISA"
 msgstr "Vous devez activer javascript pour utiliser l'interface de LISA"
+
+#: src/index.html
+msgid "Username"
+msgstr "Utilisateur"
+
+#: src/index.html
+msgid "Firstname"
+msgstr "Prénom"
+
+#: src/index.html
+msgid "Lastname"
+msgstr "Nom"
+
+#: src/index.html
+msgid "Email"
+msgstr "Email"
+
+#: src/index.html
+msgid "Password"
+msgstr "Mot de passe"
+
+#: src/index.html
+msgid "Regenerate"
+msgstr "Regénerer"

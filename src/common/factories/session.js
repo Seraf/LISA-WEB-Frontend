@@ -112,24 +112,23 @@
                                 return Restangular
                                     .all('user/login/')
                                     .post(data)
-                                    .then(function userLoginSuccess(response){
-                                            //$log.info("login.post: auth-success", response);
-                                            $this.User = response;
-                                            // remove properties we don't need.
-                                            delete $this.User.route;
-                                            delete $this.User.restangularCollection;
+                                    .then(function userLoginSuccess(loginResponse){
+                                            $this.User = loginResponse;
+                                            // Change the route to avoid using login endpoint
+                                            // to deal with this user object
+                                            $this.User.route = 'user';
                                             $this.User.is_authenticated = true;
-                                            $this.cacheUser();
                                             $this.setApiKeyAuthHeader();
+                                            $this.cacheUser();
                                             $this.authSuccess();
+                                            console.log($this);
                                             $state.go('dashboard');
                                             growlNotifications.add("Login success" ,'success');
-                                        }, function userLoginFailed(response){
-                                            //$log.info('login.post: auth-failed', response);
+                                        }, function userLoginFailed(loginResponse){
                                             $this.logout();
-                                            return $q.reject(response);
+                                            return $q.reject(loginResponse);
                                         });
-                            },
+                        },
 
                         setApiKeyAuthHeader: function(){
                                 if(this.hasOwnProperty('User') && this.User){

@@ -102,7 +102,8 @@ module.exports = {
       'vendor/ace-builds/src-min-noconflict/mode-xml.js',
       'vendor/angular-ui-ace/ui-ace.min.js',
       'vendor/angular-gettext/dist/angular-gettext.min.js',
-      'vendor/angular-animate/angular-animate.min.js'
+      'vendor/angular-animate/angular-animate.min.js',
+      'vendor/angular-animate/angular-animate.min.js.map'
     ],
     css: [
     ],

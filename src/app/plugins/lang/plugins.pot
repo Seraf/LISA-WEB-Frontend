@@ -27,6 +27,10 @@ msgstr ""
 msgid "Configuration has been updated"
 msgstr ""
 
+#: src/app/plugins/modal_configuration.tpl.html
+msgid "Configuration of plugin {{ plugin.name }}"
+msgstr ""
+
 #: src/app/plugins/plugins.js
 msgid "Create"
 msgstr ""
@@ -44,11 +48,19 @@ msgid "Enable"
 msgstr ""
 
 #: src/app/plugins/plugins.tpl.html
+msgid "Enabled"
+msgstr ""
+
+#: src/app/plugins/plugins.tpl.html
 msgid "Lang"
 msgstr ""
 
 #: src/app/plugins/plugins.tpl.html
 msgid "Name"
+msgstr ""
+
+#: src/app/plugins/plugins.tpl.html
+msgid "No"
 msgstr ""
 
 #: src/app/plugins/plugins.js
@@ -65,4 +77,8 @@ msgstr ""
 
 #: src/app/plugins/plugins.tpl.html
 msgid "Version"
+msgstr ""
+
+#: src/app/plugins/plugins.tpl.html
+msgid "Yes"
 msgstr ""

@@ -23,19 +23,6 @@ angular.module( 'lisa-frontend.chat', [
  * this way makes each module more "self-contained".
  */
 .config(function config( $stateProvider, gettext ) {
-  $stateProvider.state( 'chat', {
-    url: '/chat',
-    views: {
-      "main": {
-        controller: 'ChatCtrl',
-        templateUrl: 'chat/chat.tpl.html'
-      }
-    },
-    data: {
-        pageTitle: gettext('Chat'),
-        ncyBreadcrumbLabel: gettext('<i class="fa fa-chat"></i> Chat')
-    }
-  });
 })
 
 /**
@@ -58,12 +45,13 @@ angular.module( 'lisa-frontend.chat', [
     };
 
     sock.onmessage = function(e) {
+        $scope.isopen = true;
         var oResponse = angular.fromJson(e.data);
         $scope.messages.push({'body':oResponse.body, 'class': 'message-lisa'});
         $scope.$apply();
     };
 
-    $scope.isopen = true;
+    $scope.isopen = false;
 
 
 }])

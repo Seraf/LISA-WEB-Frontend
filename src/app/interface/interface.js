@@ -34,23 +34,23 @@ angular.module( 'lisa-frontend.interface', [
   $scope.Session = $Session;
 
   $scope.profile = function () {
-
     var modalInstance = $modal.open({
       templateUrl: 'interface/profile.tpl.html',
-      controller: ProfileCtrl
+      controller: 'ProfileCtrl'
     });
   };
-
 })
-;
 
-var ProfileCtrl = function ($scope, $modalInstance) {
+.controller( 'ProfileCtrl', function ProfileCtrl($scope, $modalInstance) {
 
-  $scope.ok = function () {
-    $modalInstance.close();
+  $scope.submit = function () {
+    console.log($scope.Session.User);
+    $scope.Session.User.save();
+    //$modalInstance.close();
   };
 
   $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
   };
-};
+})
+;

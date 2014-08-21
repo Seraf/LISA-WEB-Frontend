@@ -97,6 +97,7 @@ angular.module( 'lisa-frontend.plugins', [
     $scope.configuration = $Configuration.configuration;
 
     $scope.editConfiguration = function (plugin) {
+        console.log(plugin);
         var modalInstance = $modal.open({
             templateUrl: 'plugins/modal_configuration.tpl.html',
             controller: 'PluginsConfigurationCtrl',
@@ -123,7 +124,8 @@ angular.module( 'lisa-frontend.plugins', [
         _session.setMode("ace/mode/json");
         _editor.setTheme("ace/theme/clouds_midnight");
         _session.setUndoManager(new ace.UndoManager());
-        _renderer.setShowGutter(false);
+        _renderer.setShowGutter(true);
+        //_renderer.setuseWrapMode(true);
 
         _editor.setValue(js_beautify(angular.toJson(plugin.configuration)));
 
@@ -134,7 +136,7 @@ angular.module( 'lisa-frontend.plugins', [
         try {
             JSON.parse(publicEditor.getValue());
             plugin.configuration = angular.fromJson(publicEditor.getValue());
-            // TODO write a restangular query to update plugin.id with a angular.toJson(plugin)
+            plugin.save();
             growlNotifications.add(gettextCatalog.getString('Configuration has been updated'),'success');
             $modalInstance.close();
 

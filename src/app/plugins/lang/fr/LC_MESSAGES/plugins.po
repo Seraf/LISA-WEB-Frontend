@@ -75,3 +75,7 @@ msgstr "Sauvegarder"
 #: src/app/plugins/plugins.tpl.html
 msgid "Version"
 msgstr "Version"
+
+#: src/app/plugins/modal_configuration.tpl.html
+msgid "Configuration of plugin {{ plugin.name }}"
+msgstr "Configuration du plugin {{ plugin.name }}"

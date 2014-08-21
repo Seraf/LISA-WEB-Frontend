@@ -3,27 +3,34 @@
     <div ncy-breadcrumb></div>
     <!-- /Breadcrumb -->
 
-    <table>
+    <table class="table table-condensed">
         <thead>
             <td translate>Name</td>
             <td translate>Description</td>
             <td translate>Version</td>
-            <td translate>Enable</td>
+            <td translate>Enabled</td>
             <td translate>Lang</td>
             <td translate>Author</td>
             <td translate>Actions</td>
         </thead>
         <tr ng-repeat="plugin in plugins">
             <td>{{ plugin.name }}</td>
-            <td ng-repeat="oDescription in plugin.description">
-                <div ng-if="oDescription.lang == configuration.lang">
+            <td>
+                <div ng-repeat="oDescription in plugin.description" ng-if="oDescription.lang == configuration.lang">
                     {{ oDescription.description }}
                 </div>
             </td>
             <td>{{ plugin.version }}</td>
-            <td>{{ plugin.enable }}</td>
-            <td ng-repeat="lang in plugin.lang">
-                {{ lang }}
+            <td>
+                <div ng-if="plugin.enabled == true" translate>
+                    Yes
+                </div>
+                <div ng-if="plugin.enabled == false" translate>
+                    No
+                </div>
+            </td>
+            <td>
+                <span ng-repeat="lang in plugin.lang"> {{ lang }}</span>
             </td>
             <td>{{ plugin.author }}</td>
             <td>

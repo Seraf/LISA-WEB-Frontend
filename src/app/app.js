@@ -67,9 +67,9 @@ angular.module( 'lisa-frontend', [
 
 .controller( 'LisaCtrl', function LisaCtrl ( $scope, $location, $Session, $log) {
   $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
+    $Session.refreshUser();
     $log.info("fromstate:",fromState);
     $log.info("tostate:",toState);
-    $Session.refreshUser();
     if ( angular.isDefined( toState.data.pageTitle ) ) {
       $scope.pageTitle = toState.data.pageTitle + ' | LISA' ;
     }
