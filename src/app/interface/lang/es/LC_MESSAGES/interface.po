@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: LISA-WEB-Frontend\n"
-"PO-Revision-Date: 2014-08-23 08:37+0000\n"
+"PO-Revision-Date: 2014-08-23 18:22+0000\n"
 "Last-Translator: Julien Syx <nephilim.seraphin@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/lisa-web-frontend/language/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -73,6 +73,14 @@ msgstr ""
 
 #: src/app/interface/profile.tpl.html
 msgid "Submit"
+msgstr ""
+
+#: src/app/interface/interface.js
+msgid "The API Key has been regenerated"
+msgstr ""
+
+#: src/app/interface/interface.js
+msgid "There was an error with the API Key"
 msgstr ""
 
 #: src/app/interface/profile.tpl.html

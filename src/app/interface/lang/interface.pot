@@ -67,6 +67,14 @@ msgstr ""
 msgid "Submit"
 msgstr ""
 
+#: src/app/interface/interface.js
+msgid "The API Key has been regenerated"
+msgstr ""
+
+#: src/app/interface/interface.js
+msgid "There was an error with the API Key"
+msgstr ""
+
 #: src/app/interface/profile.tpl.html
 msgid "Username"
 msgstr ""

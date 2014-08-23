@@ -14,7 +14,10 @@
  */
 angular.module( 'lisa-frontend.interface', [
   'ui.router',
-  'SessionManager'
+  'SessionManager',
+  'restangular',
+  'gettext',
+  'growlNotifications'
 ])
 
 /**
@@ -41,7 +44,7 @@ angular.module( 'lisa-frontend.interface', [
   };
 })
 
-.controller( 'ProfileCtrl', function ProfileCtrl($scope, $modalInstance) {
+.controller( 'ProfileCtrl', function ProfileCtrl($scope, $modalInstance, Restangular, gettextCatalog, growlNotifications ) {
 
   $scope.submit = function () {
     console.log($scope.Session.User);
@@ -54,7 +57,19 @@ angular.module( 'lisa-frontend.interface', [
   };
 
   $scope.regenerateAPIKey = function () {
-    console.log('regenerate');
+    Restangular
+    .one('user', $scope.Session.User.id).one('regenerateapikey')
+    .get().then(function(response){
+      if(response.apikey) {
+        growlNotifications.add(gettextCatalog.getString('The API Key has been regenerated'), 'success');
+        $scope.Session.User.apikey = response.apikey;
+        $scope.Session.setApiKeyAuthHeader();
+      } else {
+        growlNotifications.add(gettextCatalog.getString('There was an error with the API Key'), 'error');
+      }
+    }, function(response) {
+      console.error("Error retrieving user api.");
+    });
   };
 })
 ;
