@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: LISA-WEB-Frontend\n"
-"PO-Revision-Date: 2014-08-15 07:02+0000\n"
+"PO-Revision-Date: 2014-08-23 08:37+0000\n"
 "Last-Translator: Julien Syx <nephilim.seraphin@gmail.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/projects/p/lisa-web-frontend/language/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,14 +35,54 @@ msgstr ""
 msgid "<i class=\"fa fa-fw fa-user\"></i> Profile"
 msgstr ""
 
+#: src/app/interface/profile.tpl.html
+msgid "API Key"
+msgstr ""
+
+#: src/app/interface/profile.tpl.html
+msgid "Cancel"
+msgstr ""
+
+#: src/app/interface/profile.tpl.html
+msgid "Email"
+msgstr ""
+
+#: src/app/interface/profile.tpl.html
+msgid "Firstname"
+msgstr ""
+
+#: src/app/interface/profile.tpl.html
+msgid "Lastname"
+msgstr ""
+
+#: src/app/interface/profile.tpl.html
+msgid "Password"
+msgstr ""
+
 #: src/app/interface/login.tpl.html
 msgid "Please Sign In"
+msgstr ""
+
+#: src/app/interface/profile.tpl.html
+msgid "Regenerate"
 msgstr ""
 
 #: src/app/interface/login.tpl.html
 msgid "Sign in"
 msgstr ""
 
+#: src/app/interface/profile.tpl.html
+msgid "Submit"
+msgstr ""
+
+#: src/app/interface/profile.tpl.html
+msgid "Username"
+msgstr ""
+
 #: src/index.html
 msgid "You must enable javascript to use LISA"
+msgstr ""
+
+#: src/app/interface/profile.tpl.html
+msgid "{{ Session.User.username }}'s profile"
 msgstr ""

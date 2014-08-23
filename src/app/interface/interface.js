@@ -52,5 +52,9 @@ angular.module( 'lisa-frontend.interface', [
   $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
   };
+
+  $scope.regenerateAPIKey = function () {
+    console.log('regenerate');
+  };
 })
 ;

@@ -1,12 +1,12 @@
 <section class="chatmodule" ng-controller="ChatCtrl">
-    <header class="top-bar">
+    <header class="top-bar" ng-click="isopen=!isopen">
       <div class="left">
-        <span class="icon typicons-message"></span>
+        <span class="message"></span>
         <h1 translate>L.I.S.A Chat</h1>
       </div>
 
       <div class="right">
-        <span ng-click="isopen=!isopen" class="icon typicons-minus"></span>
+        <i ng-class="{true:'fa-minus', false:'fa-plus'}[isopen]" class="minus fa"></i>
       </div>
 
     </header>

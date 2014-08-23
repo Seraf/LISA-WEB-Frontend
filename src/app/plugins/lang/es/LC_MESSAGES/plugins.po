@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: LISA-WEB-Frontend\n"
-"PO-Revision-Date: 2014-08-16 09:23+0000\n"
+"PO-Revision-Date: 2014-08-23 08:37+0000\n"
 "Last-Translator: Julien Syx <nephilim.seraphin@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/lisa-web-frontend/language/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,6 +35,10 @@ msgstr ""
 msgid "Configuration has been updated"
 msgstr ""
 
+#: src/app/plugins/modal_configuration.tpl.html
+msgid "Configuration of plugin {{ plugin.name }}"
+msgstr ""
+
 #: src/app/plugins/plugins.js
 msgid "Create"
 msgstr ""
@@ -52,11 +56,19 @@ msgid "Enable"
 msgstr ""
 
 #: src/app/plugins/plugins.tpl.html
+msgid "Enabled"
+msgstr ""
+
+#: src/app/plugins/plugins.tpl.html
 msgid "Lang"
 msgstr ""
 
 #: src/app/plugins/plugins.tpl.html
 msgid "Name"
+msgstr ""
+
+#: src/app/plugins/plugins.tpl.html
+msgid "No"
 msgstr ""
 
 #: src/app/plugins/plugins.js
@@ -73,4 +85,8 @@ msgstr ""
 
 #: src/app/plugins/plugins.tpl.html
 msgid "Version"
+msgstr ""
+
+#: src/app/plugins/plugins.tpl.html
+msgid "Yes"
 msgstr ""

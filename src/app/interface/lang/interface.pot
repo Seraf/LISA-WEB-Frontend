@@ -43,10 +43,6 @@ msgstr ""
 msgid "Firstname"
 msgstr ""
 
-#: src/index.html
-msgid "L.I.S.A Chat"
-msgstr ""
-
 #: src/app/interface/profile.tpl.html
 msgid "Lastname"
 msgstr ""

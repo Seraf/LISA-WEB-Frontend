@@ -1,7 +1,7 @@
 <div class="profile">
     <h1 translate>{{ Session.User.username }}'s profile</h1>
 
-    <form name="profile_form" class="form-horizontal" role="form" novalidate ng-submit="submit()" >
+    <form name="profile_form" class="form-horizontal" role="form" novalidate>
       <div class="form-group">
         <label for="inputUsername" class="col-sm-2 control-label" translate>Username</label>
         <div class="col-sm-10">
@@ -42,7 +42,7 @@
       </div>
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10 action-bar">
-          <button ng-disabled="profile_form.$invalid" type="submit" class="btn btn-success" translate>Submit</button>
+          <button ng-click="submit()" ng-disabled="profile_form.$invalid" type="submit" class="btn btn-success" translate>Submit</button>
           <button ng-click="cancel()" class="btn btn-danger" translate>Cancel</button>
         </div>
       </div>
