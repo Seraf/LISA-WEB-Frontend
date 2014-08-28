@@ -14,7 +14,9 @@
  */
 angular.module( 'lisa-frontend.chat', [
   'ui.router',
-  'gettext'
+  'gettext',
+  'restangular',
+  'ConfigurationManager'
 ])
 
 /**
@@ -34,8 +36,10 @@ angular.module( 'lisa-frontend.chat', [
 
 /**
  * And of course we define a controller for our route.
+ *
+ * TODO Create a singleton here
  */
-.controller( 'ChatCtrl', ['$location', '$scope', function ChatController( $location, $scope ) {
+.controller( 'ChatCtrl', function ChatController( $rootScope, $location, $scope, Restangular, $Configuration ) {
     var $port = '';
     if($location.port()){
         $port = ':' + $location.port();
@@ -43,7 +47,70 @@ angular.module( 'lisa-frontend.chat', [
 
     var sock = new SockJS('http://' + $location.host() + $port + '/websocket');
 
+         var source;
+        var context;
+        try {
+            // Fix up for prefixing
+            window.AudioContext = window.AudioContext||window.webkitAudioContext;
+            context = new AudioContext();
+        }
+        catch(e) {
+            alert('Web Audio API is not supported in this browser');
+        }
+        var analyser = context.createAnalyser();
+        var canvas=document.getElementById('lisa-canvas');
+        var canvasContext=canvas.getContext('2d');
+        var isFinished = false;
+
+        var playSound = function(buffer) {
+            // TODO Implement a queue to avoid playing multiple sound in the same time
+            source = context.createBufferSource();
+            source.buffer = buffer;
+            source.connect(analyser);
+            analyser.connect(context.destination);
+            source.onended = function() {
+                isFinished = true;
+            };
+            source.start(0);
+        };
+
+        var genSound = function(message) {
+            var data = new FormData();
+            data.append('message', message);
+            data.append('lang', $Configuration.configuration.lang);
+
+            Restangular
+                .all('lisa/tts-google/')
+                .withHttpConfig({responseType: 'arraybuffer'})
+                .post(angular.toJson({message: message, lang: $Configuration.configuration.lang}))
+                .then(function(response){
+                    console.log(response);
+                    context.decodeAudioData(response, function(buffer) {
+                    playSound(buffer);
+                });
+                }, function(response){
+                    console.log('Problem with sound generation');
+                    console.log(response);
+                });
+
+            /*var url = $rootScope.apiUrl + '/lisa/tts-google/';
+            var request = new XMLHttpRequest();
+            request.open('POST', url, true);
+            request.responseType = 'arraybuffer';
+            request.onload = function(){
+                context.decodeAudioData(request.response, function(buffer) {
+                    playSound(buffer);
+                });
+            };
+            var data = new FormData();
+            data.append('message', message);
+            data.append('lang', $Configuration.configuration.lang);
+            request.send(data);
+            */
+        };
+
     $scope.messages = [];
+
     $scope.sendMessage = function() {
         var text = '{"body": "' + $scope.messageText + '", "type": "chat", "from": "Lisa-Web", "zone": "WebSocket"}';
         sock.send(text);
@@ -54,6 +121,7 @@ angular.module( 'lisa-frontend.chat', [
     sock.onmessage = function(e) {
         $scope.isopen = true;
         var oResponse = angular.fromJson(e.data);
+        genSound(oResponse.body);
         $scope.messages.push({'body':oResponse.body, 'class': 'message-lisa'});
         $scope.$apply();
     };
@@ -61,6 +129,6 @@ angular.module( 'lisa-frontend.chat', [
     $scope.isopen = false;
 
 
-}])
+})
 ;
 

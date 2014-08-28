@@ -15,6 +15,7 @@
 angular.module( 'lisa-frontend.interface', [
   'ui.router',
   'SessionManager',
+  'ConfigurationManager',
   'restangular',
   'gettext',
   'growlNotifications'
@@ -32,9 +33,10 @@ angular.module( 'lisa-frontend.interface', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'UserDropdownCtrl', function UserDropdownCtrl( $scope, $Session, $modal) {
+.controller( 'UserDropdownCtrl', function UserDropdownCtrl( $scope, $Session, $Configuration, $modal) {
 
   $scope.Session = $Session;
+  $scope.Configuration = $Configuration.configuration;
 
   $scope.profile = function () {
     var modalInstance = $modal.open({

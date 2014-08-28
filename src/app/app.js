@@ -19,12 +19,13 @@ angular.module( 'lisa-frontend', [
   'ngAnimate'
 ])
 
-.config(function LisaConfig ( $stateProvider, $urlRouterProvider, RestangularProvider, $breadcrumbProvider) {
+.constant('apiUrl', 'backend/api/v1')
+.config(function LisaConfig ( $stateProvider, $urlRouterProvider, RestangularProvider, $breadcrumbProvider, apiUrl) {
   $breadcrumbProvider.setOptions({
     templateUrl: 'interface/breadcrumb.tpl.html'
   });
 
-  RestangularProvider.setBaseUrl('backend/api/v1');
+  RestangularProvider.setBaseUrl(apiUrl);
   RestangularProvider.setRequestSuffix('?format=json');
   RestangularProvider.setResponseExtractor(function(response, operation, what, url) {
       var newResponse;
@@ -52,7 +53,10 @@ angular.module( 'lisa-frontend', [
   $urlRouterProvider.otherwise( '/dashboard' );
 })
 
-.run( function run ($Session, $Configuration, gettextCatalog) {
+.run( function run ($rootScope, $Session, $Configuration, gettextCatalog, apiUrl) {
+  //export the constant to rootScope
+  $rootScope.apiUrl = apiUrl;
+
   // Get the current user when the application starts
   // (in case they are still logged in from a previous session)
   $Session.refreshUser();

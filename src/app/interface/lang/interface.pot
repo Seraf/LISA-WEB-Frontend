@@ -4,6 +4,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: src/index.html
+msgid "<i class=\"fa fa-fw fa-book\"></i> Documentation"
+msgstr ""
+
+#: src/index.html
 msgid "<i class=\"fa fa-fw fa-bug\"></i> L.I.S.A Issues"
 msgstr ""
 

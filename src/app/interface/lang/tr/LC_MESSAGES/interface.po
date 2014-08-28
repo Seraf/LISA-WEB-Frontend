@@ -3,13 +3,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: LISA-WEB-Frontend\n"
-"PO-Revision-Date: 2014-08-23 18:22+0000\n"
+"PO-Revision-Date: 2014-08-28 06:41+0000\n"
 "Last-Translator: Julien Syx <nephilim.seraphin@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/projects/p/lisa-web-frontend/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: tr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: src/index.html
+msgid "<i class=\"fa fa-fw fa-book\"></i> Documentation"
+msgstr ""
 
 #: src/index.html
 msgid "<i class=\"fa fa-fw fa-bug\"></i> L.I.S.A Issues"
