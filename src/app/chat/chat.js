@@ -16,7 +16,8 @@ angular.module( 'lisa-frontend.chat', [
   'ui.router',
   'gettext',
   'restangular',
-  'ConfigurationManager'
+  'ConfigurationManager',
+  'luegg.directives'
 ])
 
 /**
@@ -84,49 +85,38 @@ angular.module( 'lisa-frontend.chat', [
                 .withHttpConfig({responseType: 'arraybuffer'})
                 .post(angular.toJson({message: message, lang: $Configuration.configuration.lang}))
                 .then(function(response){
-                    console.log(response);
                     context.decodeAudioData(response, function(buffer) {
                     playSound(buffer);
                 });
                 }, function(response){
                     console.log('Problem with sound generation');
-                    console.log(response);
                 });
-
-            /*var url = $rootScope.apiUrl + '/lisa/tts-google/';
-            var request = new XMLHttpRequest();
-            request.open('POST', url, true);
-            request.responseType = 'arraybuffer';
-            request.onload = function(){
-                context.decodeAudioData(request.response, function(buffer) {
-                    playSound(buffer);
-                });
-            };
-            var data = new FormData();
-            data.append('message', message);
-            data.append('lang', $Configuration.configuration.lang);
-            request.send(data);
-            */
         };
 
     $scope.messages = [];
 
     $scope.sendMessage = function() {
-        var text = '{"body": "' + $scope.messageText + '", "type": "chat", "from": "Lisa-Web", "zone": "WebSocket"}';
-        sock.send(text);
-        $scope.messages.push({'body':$scope.messageText, 'class': 'message-me'});
-        $scope.messageText = "";
+        if ($scope.messageText) {
+            //var text = '{"body": "' + $scope.messageText + '", "type": "chat", "from": "Lisa-Web", "zone": "WebSocket"}';
+            var text = $scope.messageText;
+            sock.send(text);
+            $scope.messages.push({'body':$scope.messageText, 'class': 'message-me'});
+            $scope.messageText = "";
+        }
     };
 
     sock.onmessage = function(e) {
         $scope.isopen = true;
         var oResponse = angular.fromJson(e.data);
-        genSound(oResponse.body);
+        if ($scope.sound) {
+            genSound(oResponse.body);
+        }
         $scope.messages.push({'body':oResponse.body, 'class': 'message-lisa'});
         $scope.$apply();
     };
 
     $scope.isopen = false;
+    $scope.sound = true;
 
 
 })
