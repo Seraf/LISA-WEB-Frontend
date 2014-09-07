@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: LISA-WEB-Frontend\n"
-"PO-Revision-Date: 2014-08-28 06:42+0000\n"
+"PO-Revision-Date: 2014-09-07 12:44+0000\n"
 "Last-Translator: Julien Syx <nephilim.seraphin@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/lisa-web-frontend/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,20 +29,32 @@ msgid "<i class=\"fa fa-fw fa-flask\"></i> API Docs"
 msgstr "<i class=\"fa fa-fw fa-flask\"></i> API Docs"
 
 #: src/index.html
-msgid "<i class=\"fa fa-fw fa-flask\"></i> Plugins"
-msgstr "<i class=\"fa fa-fw fa-flask\"></i> Plugins"
+msgid "<i class=\"fa fa-fw fa-plug\"></i> Plugins"
+msgstr "<i class=\"fa fa-fw fa-plug\"></i> Plugins"
 
 #: src/index.html
 msgid "<i class=\"fa fa-fw fa-power-off\"></i> Log Out"
 msgstr "<i class=\"fa fa-fw fa-power-off\"></i> Déconnexion"
 
 #: src/index.html
+msgid "<i class=\"fa fa-fw fa-upload\"></i> Upgrade"
+msgstr "<i class=\"fa fa-fw fa-upload\"></i> Mise à jour"
+
+#: src/index.html
 msgid "<i class=\"fa fa-fw fa-user\"></i> Profile"
 msgstr "<i class=\"fa fa-fw fa-user\"></i> Paramètres"
+
+#: src/app/interface/interface.js
+msgid "<i class=\"fa fa-upload\"></i> Upgrade"
+msgstr "<i class=\"fa fa-upload\"></i> Mise à jour"
 
 #: src/app/interface/profile.tpl.html
 msgid "API Key"
 msgstr "Clé API"
+
+#: src/app/interface/upgrade.tpl.html
+msgid "Action"
+msgstr "Action"
 
 #: src/app/interface/profile.tpl.html
 msgid "Cancel"
@@ -60,6 +72,10 @@ msgstr "Prénom"
 msgid "Lastname"
 msgstr "Nom"
 
+#: src/app/interface/upgrade.tpl.html
+msgid "Local version"
+msgstr "Version locale"
+
 #: src/app/interface/profile.tpl.html
 msgid "Password"
 msgstr "Mot de passe"
@@ -71,6 +87,10 @@ msgstr "Identification"
 #: src/app/interface/profile.tpl.html
 msgid "Regenerate"
 msgstr "Régénérer"
+
+#: src/app/interface/upgrade.tpl.html
+msgid "Remote version"
+msgstr "Version disponible"
 
 #: src/app/interface/login.tpl.html
 msgid "Sign in"
@@ -88,13 +108,25 @@ msgstr "La clé API a été régénérée"
 msgid "There was an error with the API Key"
 msgstr "Il y a eu une erreur avec la clé API"
 
+#: src/app/interface/upgrade.tpl.html
+msgid "Upgrade"
+msgstr "Mettre à jour"
+
 #: src/app/interface/profile.tpl.html
 msgid "Username"
 msgstr "Utilisateur"
 
+#: src/app/interface/upgrade.tpl.html
+msgid "You already have the last version of L.I.S.A Server"
+msgstr "Vous avez la dernière version de L.I.S.A Server"
+
 #: src/index.html
 msgid "You must enable javascript to use LISA"
 msgstr "Vous devez activer javascript pour utiliser l'interface de LISA"
+
+#: src/app/interface/upgrade.tpl.html
+msgid "You should upgrade your version of L.I.S.A Server"
+msgstr "Vous devriez mettre à jour votre version de L.I.S.A Server"
 
 #: src/app/interface/profile.tpl.html
 msgid "{{ Session.User.username }}'s profile"

@@ -26,8 +26,22 @@ angular.module( 'lisa-frontend.interface', [
  * will handle ensuring they are all available at run-time, but splitting it
  * this way makes each module more "self-contained".
  */
-.config(function config( $stateProvider ) {
-
+.config(function config( $stateProvider, gettext ) {
+  $stateProvider
+      .state( 'upgrade', {
+          url: '/upgrade',
+          views: {
+              "main": {
+                  controller: 'UpgradeCtrl',
+                  templateUrl: 'interface/upgrade.tpl.html'
+              }
+          },
+          data: {
+              pageTitle: 'Upgrade',
+              ncyBreadcrumbLabel: gettext('<i class="fa fa-upload"></i> Upgrade')
+          }
+      })
+  ;
 })
 
 /**
@@ -73,5 +87,23 @@ angular.module( 'lisa-frontend.interface', [
       console.error("Error retrieving user api.");
     });
   };
+})
+
+.controller( 'UpgradeCtrl', function UpgradeCtrl( $scope, $Session, $Configuration, Restangular ) {
+  $scope.Session = $Session;
+  $scope.Configuration = $Configuration.configuration;
+  console.log($scope.Configuration);
+
+  var getLisaPackage = function () {
+    Restangular
+      .one('lisa').one('version')
+      .get()
+      .then(function (response) {
+        $scope.LisaServerVersion = response;
+        console.log($scope.LisaServerVersion);
+      });
+  };
+
+  getLisaPackage();
 })
 ;

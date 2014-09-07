@@ -17,6 +17,7 @@ angular.module( 'lisa-frontend.plugins', [
   'ui.router',
   'growlNotifications',
   'gettext',
+  'ngTable'
 ])
 
 /**
@@ -36,7 +37,7 @@ angular.module( 'lisa-frontend.plugins', [
           },
           data: {
               pageTitle: 'Plugins',
-              ncyBreadcrumbLabel: gettext('<i class="fa fa-flask"></i> Plugins')
+              ncyBreadcrumbLabel: gettext('<i class="fa fa-plug"></i> Plugins')
           }
           })
       .state( 'plugins.create', {
@@ -55,13 +56,49 @@ angular.module( 'lisa-frontend.plugins', [
   ;
 })
 
+.factory('StorePluginsRestangular', function(Restangular) {
+  return Restangular.withConfig(function(RestangularConfigurer) {
+    RestangularConfigurer.setBaseUrl('http://plugins.lisa-project.net');
+    RestangularConfigurer.setRequestSuffix('.json');
+  });
+})
+
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'PluginsCtrl', function PluginsController( $scope, Restangular, $Configuration, growlNotifications, $modal) {
+.controller( 'PluginsCtrl', function PluginsController( $scope, $filter, StorePluginsRestangular, Restangular, $Configuration, growlNotifications, $modal, ngTableParams) {
     $scope.refreshPlugins = function(){
+        StorePluginsRestangular
+            .all('plugins')
+            .getList()
+            .then(function(storeResponse){
+                $scope.store = storeResponse;
+                console.log($scope.store);
+            });
+
+            Restangular.all('plugin').getList().then(function(localPluginsResponse){
+                $scope.plugins = localPluginsResponse;
+                console.log($scope.plugins);
+            });
+
         $scope.plugins = Restangular.all('plugin').getList().$object;
+        $scope.tablePlugins = new ngTableParams({
+                page: 1,            // show first page
+                count: 10           // count per page
+            }, {
+                total: $scope.plugins.length, // length of plugins
+                getData: function($defer, params) {
+                    // use build-in angular filter
+                    var orderedData = params.sorting() ?
+                            $filter('orderBy')($scope.plugins, params.orderBy()) :
+                            $scope.plugins;
+
+                    $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+                }
+            });
     };
+
+
 
     $scope.enable = function($pluginId){
         Restangular

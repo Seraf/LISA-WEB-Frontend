@@ -16,7 +16,9 @@ angular.module( 'lisa-frontend', [
   'restangular',
   'ncy-angular-breadcrumb',
   'gettext',
-  'ngAnimate'
+  'ngAnimate',
+  'ngFlag',
+  'ngTable'
 ])
 
 .constant('apiUrl', 'backend/api/v1')
@@ -27,9 +29,10 @@ angular.module( 'lisa-frontend', [
 
   RestangularProvider.setBaseUrl(apiUrl);
   RestangularProvider.setRequestSuffix('?format=json');
+
   RestangularProvider.setResponseExtractor(function(response, operation, what, url) {
       var newResponse;
-      if (operation === 'getList') {
+      if (operation === 'getList' && response.objects && response.meta) {
           newResponse = response.objects;
           newResponse.metadata = response.meta;
       } else {

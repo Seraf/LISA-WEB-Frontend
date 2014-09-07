@@ -109,6 +109,7 @@
                         login: function(data){
                                 //$log.info("Preparing Login Data", data);
                                 var $this = this;
+                                console.log();
                                 return Restangular
                                     .all('user/login/')
                                     .post(data)

@@ -4,7 +4,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: src/app/plugins/plugins.js
-msgid "<i class=\"fa fa-flask\"></i> Plugins"
+msgid "<i class=\"fa fa-plug\"></i> Plugins"
 msgstr ""
 
 #: src/app/plugins/plugins.tpl.html

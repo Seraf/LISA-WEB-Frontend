@@ -103,9 +103,13 @@ module.exports = {
       'vendor/angular-ui-ace/ui-ace.min.js',
       'vendor/angular-gettext/dist/angular-gettext.min.js',
       'vendor/angular-animate/angular-animate.min.js',
-      'vendor/angular-animate/angular-animate.min.js.map'
+      'vendor/angular-animate/angular-animate.min.js.map',
+      'vendor/angular-scroll-glue/scrollglue.js',
+      'vendor/ng-flags/src/directives/ng-flags.js',
+      'vendor/ng-table/ng-table.js'
     ],
     css: [
+      'vendor/ng-table/ng-table.css'
     ],
     assets: [
     ]
