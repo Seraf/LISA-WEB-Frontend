@@ -106,7 +106,8 @@ module.exports = {
       'vendor/angular-animate/angular-animate.min.js.map',
       'vendor/angular-scroll-glue/scrollglue.js',
       'vendor/ng-flags/src/directives/ng-flags.js',
-      'vendor/ng-table/ng-table.js'
+      'vendor/ng-table/ng-table.js',
+      'vendor/angular-sockjs/socket.js'
     ],
     css: [
       'vendor/ng-table/ng-table.css'
