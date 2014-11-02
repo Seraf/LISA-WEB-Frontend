@@ -169,8 +169,7 @@ angular.module( 'lisa-frontend.chat', [
     $scope.messages = $rootScope.chatMessages;
     $scope.sendMessage = function() {
         if ($scope.messageText) {
-            //var text = '{"body": "' + $scope.messageText + '", "type": "chat", "from": "Lisa-Web", "zone": "WebSocket"}';
-            var text = $scope.messageText;
+            var text = '{"body": "' + $scope.messageText + '", "type": "chat", "from": "Lisa-Web", "zone": "WebSocket"}';
             $lisaSocket.send(text);
             $rootScope.chatMessages.push({'body':$scope.messageText, 'class': 'message-me'});
             $scope.messageText = "";
