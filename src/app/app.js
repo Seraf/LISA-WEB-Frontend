@@ -9,14 +9,14 @@ angular.module( 'lisa-frontend', [
   'lisa-frontend.chat',
   'ui.router',
   'ui.bootstrap',
-  'angular-loading-bar',
+  //'angular-loading-bar',
   'growlNotifications',
   'ngSanitize',
   'ui.ace',
   'restangular',
   'ncy-angular-breadcrumb',
   'gettext',
-  'ngAnimate',
+  //'ngAnimate',
   'ngFlag',
   'ngTable'
 ])
@@ -56,9 +56,12 @@ angular.module( 'lisa-frontend', [
   $urlRouterProvider.otherwise( '/dashboard' );
 })
 
-.run( function run ($rootScope, $Session, $Configuration, gettextCatalog, apiUrl) {
+.run( function run ($rootScope, $Session, $Configuration, gettextCatalog, apiUrl, $state, $stateParams) {
   //export the constant to rootScope
   $rootScope.apiUrl = apiUrl;
+
+  $rootScope.$state = $state;
+  $rootScope.$stateParams = $stateParams;
 
   // Get the current user when the application starts
   // (in case they are still logged in from a previous session)

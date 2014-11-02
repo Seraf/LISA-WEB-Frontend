@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: LISA-WEB-Frontend\n"
-"PO-Revision-Date: 2014-09-07 12:44+0000\n"
+"PO-Revision-Date: 2014-10-12 20:44+0000\n"
 "Last-Translator: Julien Syx <nephilim.seraphin@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/lisa-web-frontend/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -13,40 +13,36 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: src/index.html
-msgid "<i class=\"fa fa-fw fa-book\"></i> Documentation"
-msgstr "<i class=\"fa fa-fw fa-book\"></i> Documentation"
+msgid "<i class=\"fa fa-book m-l-n20 m-t-3\"></i> Documentation"
+msgstr "<i class=\"fa fa-book m-l-n20 m-t-3\"></i> Documentation"
 
 #: src/index.html
-msgid "<i class=\"fa fa-fw fa-bug\"></i> L.I.S.A Issues"
-msgstr "<i class=\"fa fa-fw fa-bug\"></i> L.I.S.A Bugs"
+msgid "<i class=\"fa fa-bug m-l-n20 m-t-3\"></i> L.I.S.A Issues"
+msgstr "<i class=\"fa fa-bug m-l-n20 m-t-3\"></i> L.I.S.A Bugs"
 
 #: src/index.html
-msgid "<i class=\"fa fa-fw fa-dashboard\"></i> Dashboard"
-msgstr "<i class=\"fa fa-fw fa-dashboard\"></i> Tableau de bord"
+msgid "<i class=\"fa fa-flask m-l-n20 m-t-3\"></i>API Docs"
+msgstr "<i class=\"fa fa-flask m-l-n20 m-t-3\"></i>API Docs"
 
 #: src/index.html
-msgid "<i class=\"fa fa-fw fa-flask\"></i> API Docs"
-msgstr "<i class=\"fa fa-fw fa-flask\"></i> API Docs"
+msgid "<i class=\"fa fa-fw fa-flask\"></i> Create"
+msgstr "<i class=\"fa fa-fw fa-flask\"></i> Créer"
 
 #: src/index.html
-msgid "<i class=\"fa fa-fw fa-plug\"></i> Plugins"
-msgstr "<i class=\"fa fa-fw fa-plug\"></i> Plugins"
+msgid "<i class=\"fa fa-fw fa-plug\"></i> List"
+msgstr "<i class=\"fa fa-fw fa-plug\"></i> Liste"
 
 #: src/index.html
-msgid "<i class=\"fa fa-fw fa-power-off\"></i> Log Out"
-msgstr "<i class=\"fa fa-fw fa-power-off\"></i> Déconnexion"
-
-#: src/index.html
-msgid "<i class=\"fa fa-fw fa-upload\"></i> Upgrade"
-msgstr "<i class=\"fa fa-fw fa-upload\"></i> Mise à jour"
-
-#: src/index.html
-msgid "<i class=\"fa fa-fw fa-user\"></i> Profile"
-msgstr "<i class=\"fa fa-fw fa-user\"></i> Paramètres"
+msgid "<i class=\"fa fa-power-off m-l-n20 m-t-3\"></i> Log Out"
+msgstr "<i class=\"fa fa-power-off m-l-n20 m-t-3\"></i> Déconnexion"
 
 #: src/app/interface/interface.js
 msgid "<i class=\"fa fa-upload\"></i> Upgrade"
 msgstr "<i class=\"fa fa-upload\"></i> Mise à jour"
+
+#: src/index.html
+msgid "<i class=\"fa fa-user m-l-n20 m-t-3\"></i> My Profile"
+msgstr "<i class=\"fa fa-user m-l-n20 m-t-3\"></i> Mon Profil"
 
 #: src/app/interface/profile.tpl.html
 msgid "API Key"
@@ -59,6 +55,10 @@ msgstr "Action"
 #: src/app/interface/profile.tpl.html
 msgid "Cancel"
 msgstr "Annuler"
+
+#: src/index.html
+msgid "Dashboard"
+msgstr "Tableau de bord"
 
 #: src/app/interface/profile.tpl.html
 msgid "Email"
@@ -84,6 +84,10 @@ msgstr "Mot de passe"
 msgid "Please Sign In"
 msgstr "Identification"
 
+#: src/index.html
+msgid "Plugins"
+msgstr "Plugins"
+
 #: src/app/interface/profile.tpl.html
 msgid "Regenerate"
 msgstr "Régénérer"
@@ -108,7 +112,7 @@ msgstr "La clé API a été régénérée"
 msgid "There was an error with the API Key"
 msgstr "Il y a eu une erreur avec la clé API"
 
-#: src/app/interface/upgrade.tpl.html
+#: src/app/interface/upgrade.tpl.html src/index.html
 msgid "Upgrade"
 msgstr "Mettre à jour"
 

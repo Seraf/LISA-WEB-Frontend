@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: LISA-WEB-Frontend\n"
-"PO-Revision-Date: 2014-09-07 12:42+0000\n"
+"PO-Revision-Date: 2014-10-12 20:42+0000\n"
 "Last-Translator: Julien Syx <nephilim.seraphin@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/projects/p/lisa-web-frontend/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -12,39 +12,35 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: src/index.html
-msgid "<i class=\"fa fa-fw fa-book\"></i> Documentation"
+msgid "<i class=\"fa fa-book m-l-n20 m-t-3\"></i> Documentation"
 msgstr ""
 
 #: src/index.html
-msgid "<i class=\"fa fa-fw fa-bug\"></i> L.I.S.A Issues"
+msgid "<i class=\"fa fa-bug m-l-n20 m-t-3\"></i> L.I.S.A Issues"
 msgstr ""
 
 #: src/index.html
-msgid "<i class=\"fa fa-fw fa-dashboard\"></i> Dashboard"
+msgid "<i class=\"fa fa-flask m-l-n20 m-t-3\"></i>API Docs"
 msgstr ""
 
 #: src/index.html
-msgid "<i class=\"fa fa-fw fa-flask\"></i> API Docs"
+msgid "<i class=\"fa fa-fw fa-flask\"></i> Create"
 msgstr ""
 
 #: src/index.html
-msgid "<i class=\"fa fa-fw fa-plug\"></i> Plugins"
+msgid "<i class=\"fa fa-fw fa-plug\"></i> List"
 msgstr ""
 
 #: src/index.html
-msgid "<i class=\"fa fa-fw fa-power-off\"></i> Log Out"
-msgstr ""
-
-#: src/index.html
-msgid "<i class=\"fa fa-fw fa-upload\"></i> Upgrade"
-msgstr ""
-
-#: src/index.html
-msgid "<i class=\"fa fa-fw fa-user\"></i> Profile"
+msgid "<i class=\"fa fa-power-off m-l-n20 m-t-3\"></i> Log Out"
 msgstr ""
 
 #: src/app/interface/interface.js
 msgid "<i class=\"fa fa-upload\"></i> Upgrade"
+msgstr ""
+
+#: src/index.html
+msgid "<i class=\"fa fa-user m-l-n20 m-t-3\"></i> My Profile"
 msgstr ""
 
 #: src/app/interface/profile.tpl.html
@@ -57,6 +53,10 @@ msgstr ""
 
 #: src/app/interface/profile.tpl.html
 msgid "Cancel"
+msgstr ""
+
+#: src/index.html
+msgid "Dashboard"
 msgstr ""
 
 #: src/app/interface/profile.tpl.html
@@ -83,6 +83,10 @@ msgstr ""
 msgid "Please Sign In"
 msgstr ""
 
+#: src/index.html
+msgid "Plugins"
+msgstr ""
+
 #: src/app/interface/profile.tpl.html
 msgid "Regenerate"
 msgstr ""
@@ -107,7 +111,7 @@ msgstr ""
 msgid "There was an error with the API Key"
 msgstr ""
 
-#: src/app/interface/upgrade.tpl.html
+#: src/app/interface/upgrade.tpl.html src/index.html
 msgid "Upgrade"
 msgstr ""
 

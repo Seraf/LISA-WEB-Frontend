@@ -1,16 +1,13 @@
 <section class="chatmodule" ng-controller="ChatCtrl">
-    <header class="top-bar">
-      <div class="left"  ng-click="isopen=!isopen">
-        <span class="message"></span>
-        <h1 translate>L.I.S.A Chat</h1>
-      </div>
+    <div class="tile" ng-click="isopen=!isopen">
+      <h1 translate class="tile-title">L.I.S.A Chat</h1>
 
-      <div class="right">
+      <div class="tile-config">
         <i ng-class="{true:'fa-bell-o', false:'fa-bell-slash-o'}[sound]" class="fa" ng-click="sound=!sound"></i>
         <i ng-class="{true:'fa-minus', false:'fa-plus'}[isopen]" class="fa"  ng-click="isopen=!isopen"></i>
       </div>
 
-    </header>
+    </div>
 
     <ol ng-show="isopen" class="discussion" scroll-glue>
         <li ng-repeat="message in messages" class="{{ message.class }}">
@@ -22,6 +19,6 @@
     </ol>
 
     <form ng-show="isopen" ng-submit="sendMessage()">
-        <input type="text" ng-model="messageText" />
+        <input type="text" ng-model="messageText" class="form-control input-sm" />
     </form
 </section>

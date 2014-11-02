@@ -82,7 +82,7 @@ module.exports = {
       'vendor/lodash/dist/lodash.min.js',
       'vendor/restangular/dist/restangular.min.js',
       'vendor/angular-http-auth/src/http-auth-interceptor.js',
-      'vendor/angular-loading-bar/build/loading-bar.min.js',
+      //'vendor/angular-loading-bar/build/loading-bar.min.js',
       'vendor/lscache/lscache.min.js',
       'vendor/angular-sanitize/angular-sanitize.js',
       'vendor/angular-growl-notifications/dist/growl-notifications.min.js',
@@ -102,15 +102,14 @@ module.exports = {
       'vendor/ace-builds/src-min-noconflict/mode-xml.js',
       'vendor/angular-ui-ace/ui-ace.min.js',
       'vendor/angular-gettext/dist/angular-gettext.min.js',
-      'vendor/angular-animate/angular-animate.min.js',
-      'vendor/angular-animate/angular-animate.min.js.map',
+      //'vendor/angular-animate/angular-animate.min.js',
+      //'vendor/angular-animate/angular-animate.min.js.map',
       'vendor/angular-scroll-glue/scrollglue.js',
       'vendor/ng-flags/src/directives/ng-flags.js',
       'vendor/ng-table/ng-table.js',
       'vendor/angular-sockjs/socket.js'
     ],
     css: [
-      'vendor/ng-table/ng-table.css'
     ],
     assets: [
     ]

@@ -36,6 +36,13 @@ angular.module( 'lisa-frontend.chat', [
     };
 })
 
+.directive('microphone', function() {
+    return {
+        restrict: 'EAC',
+        templateUrl: 'chat/microphone.tpl.html'
+    };
+})
+
 .factory('$lisaSocket', function ($location, socketFactory) {
     var $port = '';
     if($location.port()){
@@ -47,34 +54,89 @@ angular.module( 'lisa-frontend.chat', [
     });
 })
 
+.controller( 'MicrophoneCtrl', function MicrophoneController( $rootScope, $scope, $Configuration, $lisaSocket ) {
+        if ($rootScope.mic === undefined) {
+            $rootScope.mic = new Wit.Microphone(document.getElementById("microphone"));
+        }
+
+        var debug = false;
+
+        if(debug) {
+            $rootScope.mic.onready = function () {
+                console.log("Microphone is ready to record");
+            };
+            $rootScope.mic.onaudiostart = function () {
+                console.log("Recording started");
+            };
+            $rootScope.mic.onaudioend = function () {
+                console.log("Recording stopped, processing started");
+            };
+            $rootScope.mic.onerror = function (err) {
+                console.log("Error: " + err);
+            };
+            $rootScope.mic.onconnecting = function () {
+                console.log("Microphone is connecting");
+            };
+            $rootScope.mic.ondisconnected = function () {
+                console.log("Microphone is not connected");
+            };
+        }
+
+        $rootScope.mic.onresult = function (intent, entities, response) {
+            $rootScope.chatMessages.push({'body': response.msg_body, 'class': 'message-me'});
+            $lisaSocket.send(angular.toJson({'body': response.msg_body, 'outcome': response.outcome, 'type': 'chat', 'from': 'Lisa-Web', 'zone': 'WebSocket'}));
+
+            var r = kv("intent", intent);
+
+            for (var k in entities) {
+                var e = entities[k];
+
+                if (!(e instanceof Array)) {
+                    r += kv(k, e.value);
+                } else {
+                    for (var i = 0; i < e.length; i++) {
+                        r += kv(k, e[i].value);
+                    }
+                }
+            }
+        };
+
+        $rootScope.mic.connect($Configuration.configuration.wit_client_token);
+
+        function kv(k, v) {
+            if (toString.call(v) !== "[object String]") {
+                v = JSON.stringify(v);
+            }
+            return k + "=" + v + "\n";
+        }
+    })
+
+
 /**
  * And of course we define a controller for our route.
- *
- * TODO Create a singleton here
  */
 .controller( 'ChatCtrl', function ChatController( $rootScope, $location, $scope, Restangular, $Configuration, $lisaSocket ) {
     var source;
-    var context;
 
     try {
         // Fix up for prefixing
         window.AudioContext = window.AudioContext||window.webkitAudioContext;
-        context = new AudioContext();
+        $rootScope.audioContext = new AudioContext();
     } catch(e) {
         alert('Web Audio API is not supported in this browser');
     }
 
-    var analyser = context.createAnalyser();
+    var analyser = $rootScope.audioContext.createAnalyser();
     var canvas=document.getElementById('lisa-canvas');
     var canvasContext=canvas.getContext('2d');
     var isFinished = false;
 
     var playSound = function(buffer) {
         // TODO Implement a queue to avoid playing multiple sound in the same time
-        source = context.createBufferSource();
+        source = $rootScope.audioContext.createBufferSource();
         source.buffer = buffer;
         source.connect(analyser);
-        analyser.connect(context.destination);
+        analyser.connect($rootScope.audioContext.destination);
         source.onended = function() {
             isFinished = true;
         };
@@ -91,7 +153,7 @@ angular.module( 'lisa-frontend.chat', [
             .withHttpConfig({responseType: 'arraybuffer'})
             .post(angular.toJson({message: message, lang: $Configuration.configuration.lang}))
             .then(function(response){
-                context.decodeAudioData(response, function(buffer) {
+                $rootScope.audioContext.decodeAudioData(response, function(buffer) {
                     playSound(buffer);
                 });
             }, function(response){
@@ -100,14 +162,17 @@ angular.module( 'lisa-frontend.chat', [
         );
     };
 
-    $scope.messages = [];
+    if ($rootScope.chatMessages === undefined) {
+        $rootScope.chatMessages = [];
+    }
 
+    $scope.messages = $rootScope.chatMessages;
     $scope.sendMessage = function() {
         if ($scope.messageText) {
             //var text = '{"body": "' + $scope.messageText + '", "type": "chat", "from": "Lisa-Web", "zone": "WebSocket"}';
             var text = $scope.messageText;
             $lisaSocket.send(text);
-            $scope.messages.push({'body':$scope.messageText, 'class': 'message-me'});
+            $rootScope.chatMessages.push({'body':$scope.messageText, 'class': 'message-me'});
             $scope.messageText = "";
         }
     };
@@ -118,7 +183,7 @@ angular.module( 'lisa-frontend.chat', [
         if ($scope.sound) {
             genSound(oResponse.body);
         }
-        $scope.messages.push({'body':oResponse.body, 'class': 'message-lisa'});
+        $rootScope.chatMessages.push({'body':oResponse.body, 'class': 'message-lisa'});
         $scope.$apply();
     });
 

@@ -60,6 +60,22 @@ angular.module( 'lisa-frontend.interface', [
   };
 })
 
+.filter('pad', function() {
+  return function(num) {
+    return (num < 10 ? '0' + num : num);
+  };
+})
+
+.controller("ClockController", function($scope, $timeout) {
+  $scope.date = new Date();
+
+  var tick = function() {
+    $scope.date = new Date();
+    $timeout(tick, 1000);
+  };
+  $timeout(tick, 1000);
+})
+
 .controller( 'ProfileCtrl', function ProfileCtrl($scope, $modalInstance, Restangular, gettextCatalog, growlNotifications ) {
 
   $scope.submit = function () {

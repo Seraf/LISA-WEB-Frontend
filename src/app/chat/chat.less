@@ -9,52 +9,29 @@
     input {
       width: 100%;
       padding-left: 5px;
+      background: rgba(0,0,0,0.15);
+      &:focus {
+          background: rgba(0,0,0,0.15);
+      }
     }
-  }
-}
 
-.top-bar {
-  background: #666;
-  color: white;
-  padding: 0.5rem;
-  position: relative;
-  overflow: hidden;
-  h1 {
-    display: inline;
-    font-size: 1.3rem;
   }
-  .message {
-    display: inline-block;
-    padding: 4px 5px 2px 5px;
+
+  .tile {
+    margin-bottom: 0px;
   }
-  .left {
-    float: left;
-    text-align: center;
-  }
-  .right {
-    float: right;
+
+  .tile-config {
+    color: white;
     padding-top: 5px;
-  }
-  > * {
-    position: relative;
-  }
-  &::before {
-    content: "";
-    position: absolute;
-    top: -100%;
-    left: 0;
-    right: 0;
-    bottom: -100%;
-    opacity: 0.25;
-    background: radial-gradient(white, black);
-    animation: pulse 1s ease alternate infinite;
+    margin-right: 5px;
   }
 }
 
 
 .discussion {
   list-style: none;
-  background: #e5e5e5;
+  background: rgba(0,0,0,0.25);
   margin: 0;
   max-height: 250px;
   overflow-y: auto;
@@ -117,10 +94,11 @@
 }
 
 .messages {
-  background: white;
+  background: rgba(0,0,0,0.35);
   padding: 10px;
   border-radius: 2px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  color: #ffffff;
 
   p {
     font-size: 1.2rem;

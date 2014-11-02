@@ -2,30 +2,43 @@
     <!-- Breadcrumb -->
     <div ncy-breadcrumb></div>
     <!-- /Breadcrumb -->
+    <hr class="whiter" />
 
-
-    <div ng-if="LisaServerVersion.should_upgrade == true" class="panel-container">
-        <span class="panel-title" translate>You should upgrade your version of L.I.S.A Server</span>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th translate>Local version</th>
-                    <th translate>Remote version</th>
-                    <th translate>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>{{ LisaServerVersion.local_version }}</td>
-                    <td>{{ LisaServerVersion.remote_version }}</td>
-                    <td>
-                        <button class="btn btn-primary btn-xs" ng-click="upgrade()" translate>Upgrade</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div ng-if="LisaServerVersion.should_upgrade == false" class="panel-container">
-        <span class="panel-title"  translate>You already have the last version of L.I.S.A Server</span>
+    <div class="block-area">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div ng-if="LisaServerVersion.should_upgrade == true" class="tile">
+                            <h2 class="tile-title" translate>You should upgrade your version of L.I.S.A Server</h2>
+                            <div class="listview narrow row v-center">
+                                <div class="col-md-8">
+                                    <dl class="m-l-10 m-t-5">
+                                        <dt translate>Local version</dt>
+                                        <dd>{{ LisaServerVersion.local_version }}</dd>
+                                        <dt translate>Remote version</dt>
+                                        <dd>{{ LisaServerVersion.remote_version }}</dd>
+                                    </dl>
+                                </div>
+                                <div class="col-md-4">
+                                    <button class="btn btn-primary btn-xs" ng-click="upgrade()" translate>Upgrade</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="LisaServerVersion.should_upgrade == false" class="tile">
+                            <h2 class="tile-title" translate>You already have the last version of L.I.S.A Server</h2>
+                            <div class="listview narrow">
+                                <dl class="m-l-10 m-t-5">
+                                    <dt translate>Local version</dt>
+                                    <dd>{{ LisaServerVersion.local_version }}</dd>
+                                    <dt translate>Remote version</dt>
+                                    <dd>{{ LisaServerVersion.remote_version }}</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
